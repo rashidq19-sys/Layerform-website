@@ -1,0 +1,779 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#0B1220">
+<meta name="color-scheme" content="light">
+
+<title>Layerform System Ltd, The Operations Layer for professional firms</title>
+<meta name="description" content="I build The Operations Layer for professional firms. Custom software and automation that sits over the tools you already use and takes the manual operations and admin work off your team. Book a 30-minute discovery call.">
+
+<link rel="canonical" href="https://www.layerformsystem.co.uk/">
+<link rel="icon" href="/favicon.ico" sizes="32x32">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://www.layerformsystem.co.uk/">
+<meta property="og:title" content="Layerform System Ltd, The Operations Layer for professional firms">
+<meta property="og:description" content="Custom software and automation that takes the manual operations and admin work off your team. Book a 30-minute discovery call.">
+<meta property="og:image" content="https://www.layerformsystem.co.uk/og-image.png">
+<meta property="og:image:width" content="1024">
+<meta property="og:image:height" content="1024">
+<meta property="og:locale" content="en_GB">
+<meta property="og:site_name" content="Layerform System Ltd">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Layerform System Ltd, The Operations Layer for professional firms">
+<meta name="twitter:description" content="Custom software and automation that takes the manual operations and admin work off your team.">
+<meta name="twitter:image" content="https://layerformsystem.co.uk/og-image.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Layerform System Ltd",
+  "url": "https://www.layerformsystem.co.uk",
+  "logo": "https://www.layerformsystem.co.uk/og-image.png",
+  "email": "rashid@layerformsystem.co.uk",
+  "sameAs": ["https://www.linkedin.com/in/rash-q-1521a4269/"],
+  "founder": { "@type": "Person", "name": "Rashid" },
+  "address": { "@type": "PostalAddress", "addressCountry": "GB" }
+}
+</script>
+
+<!-- Analytics, paste a cookieless analytics snippet here (Plausible, Fathom, or Cloudflare Web Analytics via a CF proxy) when ready. Site has no forms, so a cookieless tool means no banner is required. -->
+<!-- /Analytics -->
+
+<style>
+  /* ============================================================
+     Layerform, premium one-page site. Hand-written CSS, no
+     framework, so it paints instantly with no flash of unstyled
+     content. Design tokens match the brand (ink #0F172A,
+     accent #2563EB, Inter).
+     ============================================================ */
+
+  :root {
+    --ink: #0F172A;
+    --ink-soft: #1E293B;
+    --brand-dark: #0B1220;
+    --accent: #2563EB;
+    --accent-dark: #1D4ED8;
+    --accent-light: #60A5FA;
+
+    --slate-900: #0F172A;
+    --slate-800: #1E293B;
+    --slate-700: #334155;
+    --slate-600: #475569;
+    --slate-500: #64748B;
+    --slate-400: #94A3B8;
+    --slate-300: #CBD5E1;
+    --slate-200: #E2E8F0;
+    --slate-100: #F1F5F9;
+    --slate-50:  #F8FAFC;
+    --white: #FFFFFF;
+
+    --grad-accent: linear-gradient(135deg, #3B82F6 0%, #2563EB 50%, #4F46E5 100%);
+    --grad-text: linear-gradient(120deg, #60A5FA 0%, #818CF8 100%);
+
+    --radius: 16px;
+    --radius-sm: 10px;
+    --radius-lg: 24px;
+
+    --shadow-sm: 0 1px 2px rgba(15,23,42,.06), 0 1px 3px rgba(15,23,42,.05);
+    --shadow-md: 0 4px 12px rgba(15,23,42,.06), 0 12px 28px rgba(15,23,42,.06);
+    --shadow-lg: 0 8px 24px rgba(15,23,42,.08), 0 24px 56px rgba(15,23,42,.10);
+    --shadow-glow: 0 12px 36px rgba(37,99,235,.35);
+
+    --container: 72rem;
+    --maxw-text: 46rem;
+
+    --ease: cubic-bezier(.4, 0, .2, 1);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+
+  body {
+    margin: 0;
+    font-family: 'Inter', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+    font-feature-settings: 'cv11', 'ss01', 'ss03';
+    color: var(--slate-700);
+    background: var(--white);
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  h1, h2, h3 { color: var(--ink); line-height: 1.1; letter-spacing: -0.02em; margin: 0; }
+  p { margin: 0; }
+  a { color: inherit; text-decoration: none; }
+  img, svg { display: block; max-width: 100%; }
+  ::selection { background: var(--accent); color: #fff; }
+
+  :focus-visible {
+    outline: 3px solid var(--accent);
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+
+  .container { width: 100%; max-width: var(--container); margin-inline: auto; padding-inline: 1.5rem; }
+
+  .skip-link {
+    position: absolute; left: .5rem; top: -3rem;
+    background: var(--ink); color: #fff; padding: .6rem 1rem;
+    border-radius: 8px; z-index: 100; transition: top .2s var(--ease);
+  }
+  .skip-link:focus { top: .5rem; }
+
+  /* ---------- Buttons ---------- */
+  .btn {
+    display: inline-flex; align-items: center; gap: .6rem;
+    font-weight: 600; font-size: 1rem; line-height: 1;
+    padding: .95rem 1.6rem; border-radius: 999px;
+    transition: transform .25s var(--ease), box-shadow .25s var(--ease), background .25s var(--ease);
+    will-change: transform;
+  }
+  .btn svg { width: 1.15em; height: 1.15em; transition: transform .25s var(--ease); }
+  .btn:hover svg { transform: translateX(4px); }
+
+  .btn-primary {
+    background: var(--grad-accent); color: #fff;
+    box-shadow: var(--shadow-glow);
+  }
+  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 16px 44px rgba(37,99,235,.45); }
+  .btn-primary.small { padding: .6rem 1.1rem; font-size: .9rem; }
+
+  /* ---------- Header ---------- */
+  .site-header {
+    position: fixed; inset: 0 0 auto 0; z-index: 50;
+    transition: background .3s var(--ease), box-shadow .3s var(--ease), border-color .3s var(--ease), backdrop-filter .3s var(--ease);
+    border-bottom: 1px solid transparent;
+  }
+  .site-header .bar {
+    display: flex; align-items: center; justify-content: space-between;
+    height: 4.5rem;
+  }
+  .site-header.scrolled {
+    background: rgba(255,255,255,.82);
+    backdrop-filter: saturate(180%) blur(14px);
+    -webkit-backdrop-filter: saturate(180%) blur(14px);
+    border-bottom-color: var(--slate-200);
+    box-shadow: 0 1px 0 rgba(15,23,42,.02), 0 6px 24px rgba(15,23,42,.05);
+  }
+  .logo-set { position: relative; display: block; height: 2.75rem; }
+  .logo-set img { height: 2.75rem; width: auto; transition: opacity .3s var(--ease); }
+  @media (max-width: 480px) { .logo-set, .logo-set img { height: 2.4rem; } }
+  .logo-set .logo-dark { position: absolute; inset: 0; }
+  .site-header .logo-light { opacity: 0; }   /* ink logo, shown once scrolled */
+  .site-header .logo-dark  { opacity: 1; }    /* white logo, shown over hero */
+  .site-header.scrolled .logo-light { opacity: 1; }
+  .site-header.scrolled .logo-dark  { opacity: 0; }
+
+  .nav-links { display: none; gap: 2rem; align-items: center; }
+  .nav-links a {
+    font-size: .95rem; font-weight: 500; color: rgba(255,255,255,.82);
+    position: relative; transition: color .25s var(--ease);
+  }
+  .nav-links a::after {
+    content: ''; position: absolute; left: 0; bottom: -6px; height: 2px; width: 0;
+    background: var(--accent-light); transition: width .25s var(--ease);
+  }
+  .nav-links a:hover { color: #fff; }
+  .nav-links a:hover::after { width: 100%; }
+  .site-header.scrolled .nav-links a { color: var(--slate-600); }
+  .site-header.scrolled .nav-links a:hover { color: var(--ink); }
+  .site-header.scrolled .nav-links a::after { background: var(--accent); }
+
+  .header-cta { display: flex; align-items: center; gap: 1.25rem; }
+
+  @media (min-width: 880px) {
+    .nav-links { display: flex; }
+  }
+
+  /* ---------- Section rhythm ---------- */
+  section { padding-block: clamp(4rem, 8vw, 7rem); }
+  .eyebrow {
+    display: inline-flex; align-items: center; gap: .55rem;
+    font-size: .8rem; font-weight: 600; letter-spacing: .08em; text-transform: uppercase;
+    color: var(--accent); margin-bottom: 1.1rem;
+  }
+  .eyebrow .dot { width: .45rem; height: .45rem; border-radius: 999px; background: var(--accent); }
+  .section-head { max-width: 44rem; margin-inline: auto; text-align: center; }
+  .section-head h2 { font-size: clamp(1.9rem, 1rem + 2.6vw, 2.85rem); font-weight: 800; }
+  .section-head p { margin-top: 1.25rem; font-size: 1.15rem; color: var(--slate-600); }
+  .lead { font-size: 1.2rem; color: var(--slate-600); }
+
+  .band-light { background: var(--slate-50); border-block: 1px solid var(--slate-200); }
+
+  /* ---------- Hero ---------- */
+  .hero {
+    position: relative; overflow: hidden;
+    background: var(--brand-dark);
+    color: #fff;
+    padding-top: clamp(8rem, 14vh, 11rem);
+    padding-bottom: clamp(5rem, 10vw, 8rem);
+    isolation: isolate;
+  }
+  /* glow + grid layers */
+  .hero::before {
+    content: ''; position: absolute; inset: -20% -10% auto -10%; height: 80%;
+    background:
+      radial-gradient(60% 60% at 50% 0%, rgba(59,130,246,.38), transparent 70%),
+      radial-gradient(45% 50% at 85% 10%, rgba(99,102,241,.30), transparent 70%),
+      radial-gradient(40% 45% at 12% 25%, rgba(37,99,235,.22), transparent 70%);
+    z-index: -2; filter: blur(6px);
+  }
+  .hero::after {
+    content: ''; position: absolute; inset: 0; z-index: -2;
+    background-image:
+      linear-gradient(rgba(255,255,255,.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,.05) 1px, transparent 1px);
+    background-size: 54px 54px;
+    -webkit-mask-image: radial-gradient(circle at 50% 30%, #000 0%, transparent 72%);
+    mask-image: radial-gradient(circle at 50% 30%, #000 0%, transparent 72%);
+    opacity: .6;
+  }
+  .hero-inner { max-width: 52rem; margin-inline: auto; text-align: center; position: relative; }
+
+  .hero .eyebrow {
+    color: #fff;
+    background: rgba(255,255,255,.08);
+    border: 1px solid rgba(255,255,255,.16);
+    padding: .5rem 1rem; border-radius: 999px;
+    backdrop-filter: blur(4px);
+  }
+  .hero .eyebrow .mark { width: 1.2rem; height: 1.2rem; }
+
+  .hero h1 {
+    color: #fff; font-weight: 800;
+    font-size: clamp(2.5rem, 1rem + 6vw, 4.5rem);
+    letter-spacing: -0.03em; margin-top: .25rem;
+  }
+  .hero h1 .grad {
+    background: var(--grad-text);
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+  }
+  .hero-sub {
+    margin: 1.75rem auto 0; max-width: 40rem;
+    font-size: clamp(1.05rem, .9rem + .6vw, 1.3rem);
+    color: rgba(226,232,240,.85); line-height: 1.7;
+  }
+  .hero-sub strong { color: #fff; font-weight: 600; }
+  .hero-cta { margin-top: 2.5rem; display: flex; flex-direction: column; align-items: center; gap: .9rem; }
+  .hero-note { font-size: .9rem; color: rgba(148,163,184,.9); }
+
+  /* layered mark motif, floating under the CTA */
+  .hero-stack { margin: 3.25rem auto 0; width: min(300px, 64%); display: grid; gap: .5rem; justify-items: start; }
+  .hero-stack .layer {
+    height: 1.25rem; border-radius: 999px;
+    animation: floaty 6s var(--ease) infinite;
+  }
+  .hero-stack .layer:nth-child(1) { width: 100%; background: #fff; }
+  .hero-stack .layer:nth-child(2) {
+    width: 84%; background: var(--accent);
+    box-shadow: 0 8px 30px rgba(37,99,235,.55);
+    animation-delay: .4s;
+  }
+  .hero-stack .layer:nth-child(3) { width: 100%; background: rgba(255,255,255,.82); animation-delay: .8s; }
+  @keyframes floaty { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-6px); } }
+
+  /* ---------- Problem ---------- */
+  .problem-card {
+    max-width: 50rem; margin-inline: auto; text-align: center;
+  }
+  .problem-card .lead { margin-top: 1.5rem; }
+  .pain-chips { margin-top: 2rem; display: flex; flex-wrap: wrap; gap: .65rem; justify-content: center; }
+  .pain-chips span {
+    font-size: .9rem; font-weight: 500; color: var(--slate-600);
+    background: var(--white); border: 1px solid var(--slate-200);
+    padding: .5rem .95rem; border-radius: 999px; box-shadow: var(--shadow-sm);
+  }
+
+  /* ---------- What I do, cards ---------- */
+  .grid-2 { margin-top: 3.5rem; display: grid; gap: 1.25rem; }
+  @media (min-width: 720px) { .grid-2 { grid-template-columns: 1fr 1fr; } }
+
+  .feature {
+    display: flex; gap: 1.1rem; padding: 1.6rem;
+    background: var(--white); border: 1px solid var(--slate-200);
+    border-radius: var(--radius); box-shadow: var(--shadow-sm);
+    transition: transform .3s var(--ease), box-shadow .3s var(--ease), border-color .3s var(--ease);
+  }
+  .feature:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); border-color: rgba(37,99,235,.25); }
+  .feature .icon {
+    flex: none; width: 2.75rem; height: 2.75rem; border-radius: 12px;
+    display: grid; place-items: center; color: #fff;
+    background: var(--grad-accent); box-shadow: 0 6px 16px rgba(37,99,235,.30);
+  }
+  .feature .icon svg { width: 1.4rem; height: 1.4rem; }
+  .feature p { color: var(--slate-600); }
+  .industries { margin-top: 3rem; text-align: center; color: var(--slate-600); font-size: 1.05rem; }
+  .industries strong { color: var(--ink); font-weight: 600; }
+
+  /* ---------- Proof, app cards ---------- */
+  .grid-3 { margin-top: 3.5rem; display: grid; gap: 1.5rem; }
+  @media (min-width: 760px) { .grid-3 { grid-template-columns: repeat(3, 1fr); } }
+
+  .app-card {
+    display: flex; flex-direction: column;
+    background: var(--white); border: 1px solid var(--slate-200);
+    border-radius: var(--radius-lg); overflow: hidden;
+    box-shadow: var(--shadow-md);
+    transition: transform .3s var(--ease), box-shadow .3s var(--ease);
+  }
+  .app-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-lg); }
+  .app-frame { background: var(--slate-100); border-bottom: 1px solid var(--slate-200); }
+  .app-chrome { display: flex; gap: .4rem; padding: .7rem .9rem; border-bottom: 1px solid var(--slate-200); }
+  .app-chrome i { width: .6rem; height: .6rem; border-radius: 999px; background: var(--slate-300); display: block; }
+  .app-shot { aspect-ratio: 16 / 10; }
+  .app-shot img { width: 100%; height: 100%; object-fit: cover; }
+  .app-body { padding: 1.5rem; display: flex; flex-direction: column; flex: 1; }
+  .app-tags { display: flex; align-items: center; gap: .6rem; margin-bottom: .85rem; }
+  .tag-industry { font-size: .72rem; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; color: var(--slate-500); }
+  .badge { display: inline-flex; align-items: center; gap: .4rem; font-size: .72rem; font-weight: 600; padding: .2rem .6rem; border-radius: 999px; border: 1px solid; }
+  .badge i { width: .4rem; height: .4rem; border-radius: 999px; display: block; }
+  .badge.live { color: #047857; background: #ECFDF5; border-color: #A7F3D0; }
+  .badge.live i { background: #10B981; }
+  .badge.build { color: #B45309; background: #FFFBEB; border-color: #FDE68A; }
+  .badge.build i { background: #F59E0B; }
+  .app-card h3 { font-size: 1.25rem; font-weight: 700; }
+  .app-card .desc { margin-top: .75rem; color: var(--slate-600); flex: 1; }
+  .app-link { margin-top: 1.25rem; display: inline-flex; align-items: center; gap: .4rem; font-weight: 600; color: var(--accent); transition: color .2s var(--ease); }
+  .app-link svg { width: 1rem; height: 1rem; transition: transform .25s var(--ease); }
+  .app-link:hover { color: var(--accent-dark); }
+  .app-link:hover svg { transform: translateX(3px); }
+  .app-note { margin-top: 1.25rem; font-size: .85rem; color: var(--slate-400); }
+
+  /* ---------- How it works, steps ---------- */
+  .steps { margin-top: 3.5rem; display: grid; gap: 1.5rem; position: relative; }
+  @media (min-width: 760px) { .steps { grid-template-columns: repeat(3, 1fr); } }
+  .step {
+    position: relative; padding: 1.9rem;
+    background: var(--white); border: 1px solid var(--slate-200);
+    border-radius: var(--radius); box-shadow: var(--shadow-sm);
+    transition: transform .3s var(--ease), box-shadow .3s var(--ease);
+  }
+  .step:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
+  .step .num {
+    width: 2.5rem; height: 2.5rem; border-radius: 999px; display: grid; place-items: center;
+    font-weight: 700; color: #fff; background: var(--grad-accent);
+    box-shadow: 0 6px 16px rgba(37,99,235,.30); margin-bottom: 1.1rem;
+  }
+  .step h3 { font-size: 1.2rem; font-weight: 700; }
+  .step p { margin-top: .7rem; color: var(--slate-600); }
+
+  /* ---------- About ---------- */
+  .about { max-width: var(--maxw-text); margin-inline: auto; }
+  .about .body { margin-top: 2rem; display: grid; gap: 1.25rem; font-size: 1.15rem; color: var(--slate-600); }
+  .about .body p:first-child { font-size: 1.25rem; color: var(--slate-800); }
+
+  /* ---------- FAQ ---------- */
+  .faq { max-width: var(--maxw-text); margin-inline: auto; margin-top: 3rem; display: grid; gap: 1rem; }
+  details.qa {
+    background: var(--white); border: 1px solid var(--slate-200); border-radius: var(--radius);
+    padding: 0 1.4rem; box-shadow: var(--shadow-sm);
+    transition: border-color .25s var(--ease), box-shadow .25s var(--ease);
+  }
+  details.qa[open] { border-color: rgba(37,99,235,.30); box-shadow: var(--shadow-md); }
+  details.qa summary {
+    list-style: none; cursor: pointer; display: flex; justify-content: space-between; align-items: center; gap: 1.5rem;
+    padding: 1.35rem 0; font-size: 1.1rem; font-weight: 600; color: var(--ink);
+  }
+  details.qa summary::-webkit-details-marker { display: none; }
+  .qa .icon { flex: none; width: 1.6rem; height: 1.6rem; position: relative; }
+  .qa .icon::before, .qa .icon::after {
+    content: ''; position: absolute; inset: 0; margin: auto;
+    background: var(--accent); border-radius: 2px; transition: transform .25s var(--ease), opacity .25s var(--ease);
+  }
+  .qa .icon::before { width: 1rem; height: 2px; }
+  .qa .icon::after { width: 2px; height: 1rem; }
+  details.qa[open] .icon::after { transform: rotate(90deg); opacity: 0; }
+  .qa .answer { padding: 0 0 1.5rem; color: var(--slate-600); }
+
+  /* ---------- Final CTA ---------- */
+  .cta-final {
+    position: relative; overflow: hidden; isolation: isolate;
+    background: var(--brand-dark); color: #fff; text-align: center;
+  }
+  .cta-final::before {
+    content: ''; position: absolute; inset: 0; z-index: -1;
+    background:
+      radial-gradient(50% 80% at 50% 0%, rgba(59,130,246,.38), transparent 70%),
+      radial-gradient(40% 70% at 80% 100%, rgba(99,102,241,.30), transparent 70%);
+  }
+  .cta-final h2 { color: #fff; font-size: clamp(1.9rem, 1rem + 2.6vw, 2.85rem); font-weight: 800; }
+  .cta-final p { margin: 1.25rem auto 0; max-width: 38rem; font-size: 1.15rem; color: rgba(226,232,240,.85); }
+  .cta-final .hero-cta { margin-top: 2.25rem; }
+  .cta-final .hero-note a { color: var(--slate-200); text-decoration: underline; text-underline-offset: 4px; }
+  .cta-final .hero-note a:hover { color: #fff; }
+
+  /* ---------- Footer ---------- */
+  .site-footer { background: var(--brand-dark); color: var(--slate-400); border-top: 1px solid rgba(255,255,255,.06); padding-block: 3rem; }
+  .footer-inner { display: flex; flex-direction: column; gap: 1.5rem; }
+  @media (min-width: 720px) { .footer-inner { flex-direction: row; align-items: center; justify-content: space-between; } }
+  .footer-brand { display: flex; align-items: center; gap: .85rem; }
+  .footer-brand img { height: 1.5rem; width: auto; }
+  .footer-brand span { font-size: .9rem; }
+  .footer-links { display: flex; flex-wrap: wrap; gap: .5rem 1.5rem; font-size: .9rem; }
+  .footer-links a { transition: color .2s var(--ease); }
+  .footer-links a:hover { color: #fff; }
+
+  /* ---------- Scroll reveal + motion ---------- */
+  .reveal { opacity: 0; transform: translateY(22px); transition: opacity .7s var(--ease), transform .7s var(--ease); }
+  .reveal.in { opacity: 1; transform: none; }
+  .reveal.d1 { transition-delay: .08s; }
+  .reveal.d2 { transition-delay: .16s; }
+  .reveal.d3 { transition-delay: .24s; }
+
+  .hero-inner > * { animation: rise .8s var(--ease) both; }
+  .hero-inner > *:nth-child(1) { animation-delay: .05s; }
+  .hero-inner > *:nth-child(2) { animation-delay: .15s; }
+  .hero-inner > *:nth-child(3) { animation-delay: .25s; }
+  .hero-inner > *:nth-child(4) { animation-delay: .35s; }
+  .hero-inner > *:nth-child(5) { animation-delay: .45s; }
+  @keyframes rise { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: none; } }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
+    .reveal { opacity: 1; transform: none; }
+    .hero-stack .layer { animation: none; }
+  }
+</style>
+<noscript><style>.reveal { opacity: 1; transform: none; }</style></noscript>
+</head>
+
+<body>
+
+<a href="#main" class="skip-link">Skip to content</a>
+
+<!-- Header -->
+<header class="site-header" id="site-header">
+  <div class="container bar">
+    <a href="/" class="logo-set" aria-label="Layerform System Ltd, home">
+      <img src="/images/logo-on-dark.svg" alt="Layerform" class="logo-dark">
+      <img src="/images/logo-primary.svg" alt="" aria-hidden="true" class="logo-light">
+    </a>
+    <nav class="nav-links" aria-label="Primary">
+      <a href="#what-i-do">What I do</a>
+      <a href="#proof">Proof</a>
+      <a href="#how">How it works</a>
+      <a href="#faq">FAQ</a>
+    </nav>
+    <div class="header-cta">
+      <a href="https://cal.eu/layerform/discovery-call" class="btn btn-primary small">
+        Book a call
+        <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+      </a>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero-inner">
+        <span class="eyebrow">
+          <img class="mark" src="/images/mark-on-dark.svg" alt="" aria-hidden="true">
+          The Operations Layer
+        </span>
+        <h1>Cut the manual admin that <span class="grad">slows your firm down.</span></h1>
+        <p class="hero-sub">
+          I build <strong>The Operations Layer</strong> for professional firms. Custom software and automation that sits over the tools you already use and takes the manual operations and admin work off your team.
+        </p>
+        <div class="hero-cta">
+          <a href="https://cal.eu/layerform/discovery-call" class="btn btn-primary">
+            Book a call
+            <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+          </a>
+          <p class="hero-note">30-minute discovery call. No cost, no obligation.</p>
+        </div>
+        <div class="hero-stack" aria-hidden="true">
+          <div class="layer"></div>
+          <div class="layer"></div>
+          <div class="layer"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Problem -->
+  <section class="band-light">
+    <div class="container">
+      <div class="problem-card">
+        <h2 class="reveal" style="font-size:clamp(1.9rem,1rem + 2.6vw,2.85rem);font-weight:800;">The work that quietly eats your week</h2>
+        <p class="lead reveal d1">
+          Most professional firms lose hours every week to manual admin. Chasing documents, re-keying the same data between systems, updating spreadsheets, tracking jobs by hand. It is slow, it is easy to get wrong, and it pulls your team away from the work that actually pays.
+        </p>
+        <div class="pain-chips reveal d2">
+          <span>Chasing documents</span>
+          <span>Re-keying data</span>
+          <span>Updating spreadsheets</span>
+          <span>Tracking jobs by hand</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- What I do -->
+  <section id="what-i-do">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow reveal"><span class="dot"></span> What I do</span>
+        <h2 class="reveal">Software and automation, built around how you work</h2>
+        <p class="reveal d1">
+          I build <strong style="color:var(--ink);font-weight:600;">The Operations Layer</strong>, a combination of custom software and automation that sits over the tools you already use. Two things, usually both.
+        </p>
+      </div>
+
+      <div class="grid-2">
+        <div class="feature reveal">
+          <span class="icon"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg></span>
+          <p>Automate the repetitive operations and admin work that eats your team's time.</p>
+        </div>
+        <div class="feature reveal d1">
+          <span class="icon"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M13.828 10.172a4 4 0 010 5.656l-3 3a4 4 0 01-5.656-5.656l1.5-1.5M10.172 13.828a4 4 0 010-5.656l3-3a4 4 0 015.656 5.656l-1.5 1.5"/></svg></span>
+          <p>Connect the tools you already use, so the same data stops being typed in by hand.</p>
+        </div>
+        <div class="feature reveal">
+          <span class="icon"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/></svg></span>
+          <p>Build custom internal software when off-the-shelf products do not fit how you actually work.</p>
+        </div>
+        <div class="feature reveal d1">
+          <span class="icon"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M4 7v10c0 1.1 3.6 2 8 2s8-.9 8-2V7M4 7c0 1.1 3.6 2 8 2s8-.9 8-2M4 7c0-1.1 3.6-2 8-2s8 .9 8 2m0 5c0 1.1-3.6 2-8 2s-8-.9-8-2"/></svg></span>
+          <p>Replace spreadsheets and paper trails with one system your team can trust.</p>
+        </div>
+      </div>
+
+      <p class="industries reveal d2">
+        I work with professional firms and local businesses: <strong>legal, accountancy, real estate, logistics and delivery.</strong>
+      </p>
+    </div>
+  </section>
+
+  <!-- Proof -->
+  <section id="proof" class="band-light">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow reveal"><span class="dot"></span> Proof</span>
+        <h2 class="reveal">Software I've already built</h2>
+        <p class="reveal d1">
+          These are not mock-ups. They are real systems that real businesses use. Most competitors only talk about what they could build. Here is what I've shipped.
+        </p>
+      </div>
+
+      <div class="grid-3">
+
+        <!-- DSPOps -->
+        <article class="app-card reveal">
+          <div class="app-frame">
+            <div class="app-chrome" aria-hidden="true"><i></i><i></i><i></i></div>
+            <div class="app-shot"><img src="/images/dspops-screenshot.svg" alt="DSPOps operations platform"></div>
+          </div>
+          <div class="app-body">
+            <div class="app-tags">
+              <span class="tag-industry">Logistics</span>
+              <span class="badge live"><i></i> Live</span>
+            </div>
+            <h3>DSPOps</h3>
+            <p class="desc">An operations platform for Amazon delivery partners. Drivers, rotas, compliance, vehicle inspections and daily operations, all in one place. Built from real logistics experience, not guesswork.</p>
+            <a href="https://dspops.app/" target="_blank" rel="noopener" class="app-link">
+              Visit dspops.app
+              <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+            </a>
+          </div>
+        </article>
+
+        <!-- Estate Revenue Manager -->
+        <article class="app-card reveal d1">
+          <div class="app-frame">
+            <div class="app-chrome" aria-hidden="true"><i></i><i></i><i></i></div>
+            <div class="app-shot"><img src="/images/estate-revenue-manager.svg" alt="Estate Revenue Manager screenshot"></div>
+          </div>
+          <div class="app-body">
+            <div class="app-tags">
+              <span class="tag-industry">Property</span>
+              <span class="badge live"><i></i> Live</span>
+            </div>
+            <h3>Estate Revenue Manager</h3>
+            <p class="desc">A staff rota and revenue management system for high-end residential property firms. Scheduling, revenue tracking, forecasting and exportable reports.</p>
+            <p class="app-note">Private system, no public link.</p>
+          </div>
+        </article>
+
+        <!-- Case management -->
+        <article class="app-card reveal d2">
+          <div class="app-frame">
+            <div class="app-chrome" aria-hidden="true"><i></i><i></i><i></i></div>
+            <div class="app-shot"><img src="/images/case-management.svg" alt="Case management system screenshot"></div>
+          </div>
+          <div class="app-body">
+            <div class="app-tags">
+              <span class="tag-industry">Legal</span>
+              <span class="badge build"><i></i> In build</span>
+            </div>
+            <h3>Case management system</h3>
+            <p class="desc">I'm currently building a case management platform for a UK immigration law firm. It replaces paper files, spreadsheets and shared inboxes with one place for cases, deadlines, documents and client updates.</p>
+            <p class="app-note">Screenshot uses dummy data.</p>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- How it works -->
+  <section id="how">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow reveal"><span class="dot"></span> How it works</span>
+        <h2 class="reveal">How I build The Operations Layer for you</h2>
+      </div>
+      <ol class="steps" style="list-style:none;margin-block:0;padding:0;">
+        <li class="step reveal">
+          <div class="num">1</div>
+          <h3>Discover</h3>
+          <p>We start with a short call to find the work that's wasting the most time. Plain English, no obligation.</p>
+        </li>
+        <li class="step reveal d1">
+          <div class="num">2</div>
+          <h3>Build</h3>
+          <p>I build the automation or software, and keep you involved so it fits how your team actually works.</p>
+        </li>
+        <li class="step reveal d2">
+          <div class="num">3</div>
+          <h3>Launch</h3>
+          <p>We ship it, your team starts using it, and it starts saving time straight away.</p>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- About -->
+  <section class="band-light">
+    <div class="container">
+      <div class="about">
+        <div class="section-head" style="text-align:left;margin-inline:0;">
+          <span class="eyebrow reveal"><span class="dot"></span> About</span>
+          <h2 class="reveal">Who you're working with</h2>
+        </div>
+        <div class="body">
+          <p class="reveal d1">I'm Rashid, founder of Layerform System Ltd. I've spent over 15 years turning messy manual processes into working systems.</p>
+          <p class="reveal d1">I built and sold a travel business in Dubai that ran on an automated booking system, ran a logistics company for six years, and built an automated performance dashboard at the NHS.</p>
+          <p class="reveal d2">Now I build software for professional firms. I don't sell templates or theory. I ship working tools that businesses use every day.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow reveal"><span class="dot"></span> FAQ</span>
+        <h2 class="reveal">Common questions</h2>
+      </div>
+      <div class="faq">
+        <details class="qa reveal">
+          <summary>What does it cost? <span class="icon" aria-hidden="true"></span></summary>
+          <p class="answer">Every project is different, so I quote per project after the discovery call, once I understand the work involved. No retainers you don't need, no surprises.</p>
+        </details>
+        <details class="qa reveal">
+          <summary>Who is this for? <span class="icon" aria-hidden="true"></span></summary>
+          <p class="answer">Professional firms and local businesses with manual, repetitive operations work: legal, accountancy, real estate, logistics and similar. If your team spends hours on admin that feels like it should be automated, it probably can be.</p>
+        </details>
+        <details class="qa reveal">
+          <summary>How long does it take? <span class="icon" aria-hidden="true"></span></summary>
+          <p class="answer">Small automations can be live in days. The Operations Layer for a whole firm takes longer, but you'll see working pieces early instead of waiting months for one big reveal.</p>
+        </details>
+        <details class="qa reveal">
+          <summary>Do I need to be technical? <span class="icon" aria-hidden="true"></span></summary>
+          <p class="answer">No. That's the whole point. I handle the technical side and keep you in the loop in plain English.</p>
+        </details>
+        <details class="qa reveal">
+          <summary>I'm not sure what to automate. Can you help? <span class="icon" aria-hidden="true"></span></summary>
+          <p class="answer">Yes. That's what the discovery call is for. I'll help you spot the biggest time-wasters, even if you don't know where to start.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- Final CTA -->
+  <section class="cta-final">
+    <div class="container">
+      <h2 class="reveal">Let's find the first thing worth automating</h2>
+      <p class="reveal d1">If your team is buried in repetitive operations work, book a short call and we'll find the quickest win.</p>
+      <div class="hero-cta reveal d2">
+        <a href="https://cal.eu/layerform/discovery-call" class="btn btn-primary">
+          Book a call
+          <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+        </a>
+        <p class="hero-note">Or email me, <a href="mailto:rashid@layerformsystem.co.uk">rashid@layerformsystem.co.uk</a></p>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- Footer -->
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <div class="footer-brand">
+      <img src="/images/logo-on-dark.svg" alt="Layerform">
+      <span>&copy; 2026 Layerform System Ltd</span>
+    </div>
+    <div class="footer-links">
+      <a href="mailto:rashid@layerformsystem.co.uk">rashid@layerformsystem.co.uk</a>
+      <a href="https://www.linkedin.com/in/rash-q-1521a4269/" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="/privacy.html">Privacy policy</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Header: transparent over the dark hero, frosted-white once past it.
+  (function () {
+    var header = document.getElementById('site-header');
+    var hero = document.querySelector('.hero');
+    if (!header || !hero) return;
+    if ('IntersectionObserver' in window) {
+      var obs = new IntersectionObserver(function (entries) {
+        // Solid header once the hero has scrolled mostly out of view.
+        header.classList.toggle('scrolled', !entries[0].isIntersecting);
+      }, { rootMargin: '-72px 0px 0px 0px', threshold: 0 });
+      obs.observe(hero);
+    } else {
+      window.addEventListener('scroll', function () {
+        header.classList.toggle('scrolled', window.scrollY > hero.offsetHeight - 72);
+      }, { passive: true });
+    }
+  })();
+
+  // Scroll reveal: fade + rise elements as they enter the viewport.
+  (function () {
+    var items = document.querySelectorAll('.reveal');
+    if (!('IntersectionObserver' in window)) {
+      items.forEach(function (el) { el.classList.add('in'); });
+      return;
+    }
+    var io = new IntersectionObserver(function (entries, observer) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('in');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { rootMargin: '0px 0px -10% 0px', threshold: 0.1 });
+    items.forEach(function (el) { io.observe(el); });
+  })();
+</script>
+
+</body>
+</html>

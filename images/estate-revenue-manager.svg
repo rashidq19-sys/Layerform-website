@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 800" role="img" aria-label="Estate Revenue Manager screenshot placeholder">
+  <defs>
+    <pattern id="erm-grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M40 0H0V40" fill="none" stroke="#E2E8F0" stroke-width="1"/>
+    </pattern>
+  </defs>
+  <rect width="1280" height="800" fill="#F8FAFC"/>
+  <rect width="1280" height="800" fill="url(#erm-grid)"/>
+
+  <!-- subtle layered mark, top right -->
+  <g transform="translate(1140 60)" opacity="0.18">
+    <rect x="0" y="0" width="80" height="14" rx="3" fill="#0F172A"/>
+    <rect x="0" y="22" width="80" height="14" rx="3" fill="#2563EB"/>
+    <rect x="0" y="44" width="80" height="14" rx="3" fill="#0F172A"/>
+  </g>
+
+  <!-- centred label -->
+  <g text-anchor="middle" font-family="Inter, -apple-system, Segoe UI, Roboto, sans-serif">
+    <text x="640" y="380" fill="#0F172A" font-size="56" font-weight="600" letter-spacing="-0.5">Estate Revenue Manager</text>
+    <text x="640" y="420" fill="#64748B" font-size="20" font-weight="400">Screenshot placeholder, swap this file with the real image</text>
+    <text x="640" y="455" fill="#94A3B8" font-size="14" font-weight="500" letter-spacing="1">1280 &#215; 800</text>
+  </g>
+</svg>

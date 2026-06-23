@@ -1,0 +1,16 @@
+{
+  "name": "layerform-site",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Layerform System Ltd marketing site, static HTML served by a tiny Node process for Railway.",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "start": "node server.mjs"
+  },
+  "dependencies": {
+    "serve-handler": "^6.1.6"
+  }
+}
