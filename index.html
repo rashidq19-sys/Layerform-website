@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="theme-color" content="#0F172A">
+<meta name="theme-color" content="#0B1220">
 <meta name="color-scheme" content="light">
 
 <title>Layerform System Ltd, The Operations Layer for logistics and delivery firms</title>
@@ -30,33 +30,7 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-
-<script src="https://cdn.tailwindcss.com"></script>
-<script>
-  tailwind.config = {
-    theme: {
-      extend: {
-        colors: {
-          ink: { DEFAULT: '#0F172A', soft: '#1E293B' },
-          accent: { DEFAULT: '#2563EB', dark: '#1D4ED8' }
-        },
-        fontFamily: {
-          sans: ['Inter', 'ui-sans-serif', 'system-ui', '-apple-system', 'Segoe UI', 'Roboto', 'sans-serif']
-        }
-      }
-    }
-  }
-</script>
-<style>
-  html { scroll-behavior: smooth; }
-  body { font-feature-settings: 'cv11', 'ss01', 'ss03'; }
-  summary { list-style: none; cursor: pointer; }
-  summary::-webkit-details-marker { display: none; }
-  details[open] .faq-icon { transform: rotate(45deg); }
-  .faq-icon { transition: transform 200ms ease; }
-  ::selection { background: #2563EB; color: white; }
-</style>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
 <script type="application/ld+json">
 {
@@ -74,339 +48,877 @@
 
 <!-- Analytics, paste a cookieless analytics snippet here (Plausible, Fathom, or Cloudflare Web Analytics via a CF proxy) when ready. Site has no forms, so a cookieless tool means no banner is required. -->
 <!-- /Analytics -->
-</head>
-<body class="font-sans text-slate-700 bg-white antialiased">
 
-<a href="#main" class="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:bg-ink focus:text-white focus:px-4 focus:py-2 focus:rounded">Skip to content</a>
+<style>
+  /* ============================================================
+     Layerform, premium one-page site. Hand-written CSS, no
+     framework, so it paints instantly with no flash of unstyled
+     content. Design tokens match the brand (ink #0F172A,
+     accent #2563EB, Inter).
+     ============================================================ */
+
+  :root {
+    --ink: #0F172A;
+    --ink-soft: #1E293B;
+    --brand-dark: #0B1220;
+    --accent: #2563EB;
+    --accent-dark: #1D4ED8;
+    --accent-light: #60A5FA;
+
+    --slate-900: #0F172A;
+    --slate-800: #1E293B;
+    --slate-700: #334155;
+    --slate-600: #475569;
+    --slate-500: #64748B;
+    --slate-400: #94A3B8;
+    --slate-300: #CBD5E1;
+    --slate-200: #E2E8F0;
+    --slate-100: #F1F5F9;
+    --slate-50:  #F8FAFC;
+    --white: #FFFFFF;
+
+    --grad-accent: linear-gradient(135deg, #3B82F6 0%, #2563EB 50%, #4F46E5 100%);
+    --grad-text: linear-gradient(120deg, #60A5FA 0%, #818CF8 100%);
+
+    --radius: 16px;
+    --radius-sm: 10px;
+    --radius-lg: 24px;
+
+    --shadow-sm: 0 1px 2px rgba(15,23,42,.06), 0 1px 3px rgba(15,23,42,.05);
+    --shadow-md: 0 4px 12px rgba(15,23,42,.06), 0 12px 28px rgba(15,23,42,.06);
+    --shadow-lg: 0 8px 24px rgba(15,23,42,.08), 0 24px 56px rgba(15,23,42,.10);
+    --shadow-glow: 0 12px 36px rgba(37,99,235,.35);
+
+    --container: 72rem;
+    --maxw-text: 46rem;
+
+    --ease: cubic-bezier(.4, 0, .2, 1);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+
+  body {
+    margin: 0;
+    font-family: 'Inter', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+    font-feature-settings: 'cv11', 'ss01', 'ss03';
+    color: var(--slate-700);
+    background: var(--white);
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  h1, h2, h3 { color: var(--ink); line-height: 1.1; letter-spacing: -0.02em; margin: 0; }
+  p { margin: 0; }
+  a { color: inherit; text-decoration: none; }
+  img, svg { display: block; max-width: 100%; }
+  ::selection { background: var(--accent); color: #fff; }
+
+  :focus-visible {
+    outline: 3px solid var(--accent);
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+
+  .container { width: 100%; max-width: var(--container); margin-inline: auto; padding-inline: 1.5rem; }
+
+  .skip-link {
+    position: absolute; left: .5rem; top: -3rem;
+    background: var(--ink); color: #fff; padding: .6rem 1rem;
+    border-radius: 8px; z-index: 100; transition: top .2s var(--ease);
+  }
+  .skip-link:focus { top: .5rem; }
+
+  /* ---------- Buttons ---------- */
+  .btn {
+    display: inline-flex; align-items: center; gap: .6rem;
+    font-weight: 600; font-size: 1rem; line-height: 1;
+    padding: .95rem 1.6rem; border-radius: 999px;
+    transition: transform .25s var(--ease), box-shadow .25s var(--ease), background .25s var(--ease);
+    will-change: transform;
+  }
+  .btn svg { width: 1.15em; height: 1.15em; transition: transform .25s var(--ease); }
+  .btn:hover svg { transform: translateX(4px); }
+
+  .btn-primary {
+    background: var(--grad-accent); color: #fff;
+    box-shadow: var(--shadow-glow);
+  }
+  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 16px 44px rgba(37,99,235,.45); }
+  .btn-primary.small { padding: .6rem 1.1rem; font-size: .9rem; }
+
+  /* ---------- Header ---------- */
+  .site-header {
+    position: fixed; inset: 0 0 auto 0; z-index: 50;
+    transition: background .3s var(--ease), box-shadow .3s var(--ease), border-color .3s var(--ease), backdrop-filter .3s var(--ease);
+    border-bottom: 1px solid transparent;
+  }
+  .site-header .bar {
+    display: flex; align-items: center; justify-content: space-between;
+    height: 4.5rem;
+  }
+  .site-header.scrolled {
+    background: rgba(255,255,255,.82);
+    backdrop-filter: saturate(180%) blur(14px);
+    -webkit-backdrop-filter: saturate(180%) blur(14px);
+    border-bottom-color: var(--slate-200);
+    box-shadow: 0 1px 0 rgba(15,23,42,.02), 0 6px 24px rgba(15,23,42,.05);
+  }
+  .logo-set { position: relative; display: block; height: 2.75rem; }
+  .logo-set img { height: 2.75rem; width: auto; transition: opacity .3s var(--ease); }
+  @media (max-width: 480px) { .logo-set, .logo-set img { height: 2.4rem; } }
+  .logo-set .logo-dark { position: absolute; inset: 0; }
+  .site-header .logo-light { opacity: 0; }   /* ink logo, shown once scrolled */
+  .site-header .logo-dark  { opacity: 1; }    /* white logo, shown over hero */
+  .site-header.scrolled .logo-light { opacity: 1; }
+  .site-header.scrolled .logo-dark  { opacity: 0; }
+
+  .nav-links { display: none; gap: 2rem; align-items: center; }
+  .nav-links a {
+    font-size: .95rem; font-weight: 500; color: rgba(255,255,255,.82);
+    position: relative; transition: color .25s var(--ease);
+  }
+  .nav-links a::after {
+    content: ''; position: absolute; left: 0; bottom: -6px; height: 2px; width: 0;
+    background: var(--accent-light); transition: width .25s var(--ease);
+  }
+  .nav-links a:hover { color: #fff; }
+  .nav-links a:hover::after { width: 100%; }
+  .site-header.scrolled .nav-links a { color: var(--slate-600); }
+  .site-header.scrolled .nav-links a:hover { color: var(--ink); }
+  .site-header.scrolled .nav-links a::after { background: var(--accent); }
+
+  .header-cta { display: flex; align-items: center; gap: 1.25rem; }
+
+  @media (min-width: 880px) {
+    .nav-links { display: flex; }
+  }
+
+  /* ---------- Section rhythm ---------- */
+  section { padding-block: clamp(4rem, 8vw, 7rem); }
+  .eyebrow {
+    display: inline-flex; align-items: center; gap: .55rem;
+    font-size: .8rem; font-weight: 600; letter-spacing: .08em; text-transform: uppercase;
+    color: var(--accent); margin-bottom: 1.1rem;
+  }
+  .eyebrow .dot { width: .45rem; height: .45rem; border-radius: 999px; background: var(--accent); }
+  .section-head { max-width: 44rem; margin-inline: auto; text-align: center; }
+  .section-head h2 { font-size: clamp(1.9rem, 1rem + 2.6vw, 2.85rem); font-weight: 800; }
+  .section-head p { margin-top: 1.25rem; font-size: 1.15rem; color: var(--slate-600); }
+  .lead { font-size: 1.2rem; color: var(--slate-600); }
+
+  .band-light { background: var(--slate-50); border-block: 1px solid var(--slate-200); }
+
+  /* ---------- Hero ---------- */
+  .hero {
+    position: relative; overflow: hidden;
+    background: var(--brand-dark);
+    color: #fff;
+    padding-top: clamp(8rem, 14vh, 11rem);
+    padding-bottom: clamp(5rem, 10vw, 8rem);
+    isolation: isolate;
+  }
+  /* glow + grid layers */
+  .hero::before {
+    content: ''; position: absolute; inset: -20% -10% auto -10%; height: 80%;
+    background:
+      radial-gradient(60% 60% at 50% 0%, rgba(59,130,246,.38), transparent 70%),
+      radial-gradient(45% 50% at 85% 10%, rgba(99,102,241,.30), transparent 70%),
+      radial-gradient(40% 45% at 12% 25%, rgba(37,99,235,.22), transparent 70%);
+    z-index: -2; filter: blur(6px);
+  }
+  .hero::after {
+    content: ''; position: absolute; inset: 0; z-index: -2;
+    background-image:
+      linear-gradient(rgba(255,255,255,.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,.05) 1px, transparent 1px);
+    background-size: 54px 54px;
+    -webkit-mask-image: radial-gradient(circle at 50% 30%, #000 0%, transparent 72%);
+    mask-image: radial-gradient(circle at 50% 30%, #000 0%, transparent 72%);
+    opacity: .6;
+  }
+  .hero-inner { max-width: 52rem; margin-inline: auto; text-align: center; position: relative; }
+
+  .hero .eyebrow {
+    color: #fff;
+    background: rgba(255,255,255,.08);
+    border: 1px solid rgba(255,255,255,.16);
+    padding: .5rem 1rem; border-radius: 999px;
+    backdrop-filter: blur(4px);
+  }
+  .hero .eyebrow .mark { width: 1.2rem; height: 1.2rem; }
+
+  .hero h1 {
+    color: #fff; font-weight: 800;
+    font-size: clamp(2.5rem, 1rem + 6vw, 4.5rem);
+    letter-spacing: -0.03em; margin-top: .25rem;
+  }
+  .hero h1 .grad {
+    background: var(--grad-text);
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+  }
+  .hero-sub {
+    margin: 1.75rem auto 0; max-width: 40rem;
+    font-size: clamp(1.05rem, .9rem + .6vw, 1.3rem);
+    color: rgba(226,232,240,.85); line-height: 1.7;
+  }
+  .hero-sub strong { color: #fff; font-weight: 600; }
+  .hero-cta { margin-top: 2.5rem; display: flex; flex-direction: column; align-items: center; gap: .9rem; }
+  .hero-note { font-size: .9rem; color: rgba(148,163,184,.9); }
+
+  /* layered mark motif, floating under the CTA */
+  .hero-stack { margin: 3.25rem auto 0; width: min(300px, 64%); display: grid; gap: .5rem; justify-items: start; }
+  .hero-stack .layer {
+    height: 1.25rem; border-radius: 999px;
+    animation: floaty 6s var(--ease) infinite;
+  }
+  .hero-stack .layer:nth-child(1) { width: 100%; background: #fff; }
+  .hero-stack .layer:nth-child(2) {
+    width: 84%; background: var(--accent);
+    box-shadow: 0 8px 30px rgba(37,99,235,.55);
+    animation-delay: .4s;
+  }
+  .hero-stack .layer:nth-child(3) { width: 100%; background: rgba(255,255,255,.82); animation-delay: .8s; }
+  @keyframes floaty { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-6px); } }
+
+  /* ---------- Problem ---------- */
+  .problem-card {
+    max-width: 50rem; margin-inline: auto; text-align: center;
+  }
+  .problem-card .lead { margin-top: 1.5rem; }
+  .pain-chips { margin-top: 2rem; display: flex; flex-wrap: wrap; gap: .65rem; justify-content: center; }
+  .pain-chips span {
+    font-size: .9rem; font-weight: 500; color: var(--slate-600);
+    background: var(--white); border: 1px solid var(--slate-200);
+    padding: .5rem .95rem; border-radius: 999px; box-shadow: var(--shadow-sm);
+  }
+
+  /* ---------- What I do, cards ---------- */
+  .grid-2 { margin-top: 3.5rem; display: grid; gap: 1.25rem; }
+  @media (min-width: 720px) { .grid-2 { grid-template-columns: 1fr 1fr; } }
+
+  .feature {
+    display: flex; gap: 1.1rem; padding: 1.6rem;
+    background: var(--white); border: 1px solid var(--slate-200);
+    border-radius: var(--radius); box-shadow: var(--shadow-sm);
+    transition: transform .3s var(--ease), box-shadow .3s var(--ease), border-color .3s var(--ease);
+  }
+  .feature:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); border-color: rgba(37,99,235,.25); }
+  .feature .icon {
+    flex: none; width: 2.75rem; height: 2.75rem; border-radius: 12px;
+    display: grid; place-items: center; color: #fff;
+    background: var(--grad-accent); box-shadow: 0 6px 16px rgba(37,99,235,.30);
+  }
+  .feature .icon svg { width: 1.4rem; height: 1.4rem; }
+  .feature p { color: var(--slate-600); }
+  .industries { margin-top: 3rem; text-align: center; color: var(--slate-600); font-size: 1.05rem; }
+  .industries strong { color: var(--ink); font-weight: 600; }
+
+  /* ---------- Proof, app cards ---------- */
+  .grid-3 { margin-top: 3.5rem; display: grid; gap: 1.5rem; }
+  @media (min-width: 760px) { .grid-3 { grid-template-columns: repeat(3, 1fr); } }
+
+  .app-card {
+    display: flex; flex-direction: column;
+    background: var(--white); border: 1px solid var(--slate-200);
+    border-radius: var(--radius-lg); overflow: hidden;
+    box-shadow: var(--shadow-md);
+    transition: transform .3s var(--ease), box-shadow .3s var(--ease);
+  }
+  .app-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-lg); }
+  .app-frame { background: var(--slate-100); border-bottom: 1px solid var(--slate-200); }
+  .app-chrome { display: flex; gap: .4rem; padding: .7rem .9rem; border-bottom: 1px solid var(--slate-200); }
+  .app-chrome i { width: .6rem; height: .6rem; border-radius: 999px; background: var(--slate-300); display: block; }
+  .app-shot { aspect-ratio: 16 / 10; }
+  .app-shot img { width: 100%; height: 100%; object-fit: cover; }
+  .app-body { padding: 1.5rem; display: flex; flex-direction: column; flex: 1; }
+  .app-tags { display: flex; align-items: center; gap: .6rem; margin-bottom: .85rem; }
+  .tag-industry { font-size: .72rem; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; color: var(--slate-500); }
+  .badge { display: inline-flex; align-items: center; gap: .4rem; font-size: .72rem; font-weight: 600; padding: .2rem .6rem; border-radius: 999px; border: 1px solid; }
+  .badge i { width: .4rem; height: .4rem; border-radius: 999px; display: block; }
+  .badge.live { color: #047857; background: #ECFDF5; border-color: #A7F3D0; }
+  .badge.live i { background: #10B981; }
+  .badge.build { color: #B45309; background: #FFFBEB; border-color: #FDE68A; }
+  .badge.build i { background: #F59E0B; }
+  .app-card h3 { font-size: 1.25rem; font-weight: 700; }
+  .app-card .desc { margin-top: .75rem; color: var(--slate-600); flex: 1; }
+  .app-link { margin-top: 1.25rem; display: inline-flex; align-items: center; gap: .4rem; font-weight: 600; color: var(--accent); transition: color .2s var(--ease); }
+  .app-link svg { width: 1rem; height: 1rem; transition: transform .25s var(--ease); }
+  .app-link:hover { color: var(--accent-dark); }
+  .app-link:hover svg { transform: translateX(3px); }
+  .app-note { margin-top: 1.25rem; font-size: .85rem; color: var(--slate-400); }
+
+  /* ---------- How it works, steps ---------- */
+  .steps { margin-top: 3.5rem; display: grid; gap: 1.5rem; position: relative; }
+  @media (min-width: 760px) { .steps { grid-template-columns: repeat(3, 1fr); } }
+  .step {
+    position: relative; padding: 1.9rem;
+    background: var(--white); border: 1px solid var(--slate-200);
+    border-radius: var(--radius); box-shadow: var(--shadow-sm);
+    transition: transform .3s var(--ease), box-shadow .3s var(--ease);
+  }
+  .step:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
+  .step .num {
+    width: 2.5rem; height: 2.5rem; border-radius: 999px; display: grid; place-items: center;
+    font-weight: 700; color: #fff; background: var(--grad-accent);
+    box-shadow: 0 6px 16px rgba(37,99,235,.30); margin-bottom: 1.1rem;
+  }
+  .step h3 { font-size: 1.2rem; font-weight: 700; }
+  .step p { margin-top: .7rem; color: var(--slate-600); }
+
+  /* ---------- About ---------- */
+  .about { max-width: var(--maxw-text); margin-inline: auto; }
+  .about .body { margin-top: 2rem; display: grid; gap: 1.25rem; font-size: 1.15rem; color: var(--slate-600); }
+  .about .body p:first-child { font-size: 1.25rem; color: var(--slate-800); }
+
+  /* ---------- FAQ ---------- */
+  .faq { max-width: var(--maxw-text); margin-inline: auto; margin-top: 3rem; display: grid; gap: 1rem; }
+  details.qa {
+    background: var(--white); border: 1px solid var(--slate-200); border-radius: var(--radius);
+    padding: 0 1.4rem; box-shadow: var(--shadow-sm);
+    transition: border-color .25s var(--ease), box-shadow .25s var(--ease);
+  }
+  details.qa[open] { border-color: rgba(37,99,235,.30); box-shadow: var(--shadow-md); }
+  details.qa summary {
+    list-style: none; cursor: pointer; display: flex; justify-content: space-between; align-items: center; gap: 1.5rem;
+    padding: 1.35rem 0; font-size: 1.1rem; font-weight: 600; color: var(--ink);
+  }
+  details.qa summary::-webkit-details-marker { display: none; }
+  .qa .icon { flex: none; width: 1.6rem; height: 1.6rem; position: relative; }
+  .qa .icon::before, .qa .icon::after {
+    content: ''; position: absolute; inset: 0; margin: auto;
+    background: var(--accent); border-radius: 2px; transition: transform .25s var(--ease), opacity .25s var(--ease);
+  }
+  .qa .icon::before { width: 1rem; height: 2px; }
+  .qa .icon::after { width: 2px; height: 1rem; }
+  details.qa[open] .icon::after { transform: rotate(90deg); opacity: 0; }
+  .qa .answer { padding: 0 0 1.5rem; color: var(--slate-600); }
+
+  /* ---------- Final CTA ---------- */
+  .cta-final {
+    position: relative; overflow: hidden; isolation: isolate;
+    background: var(--brand-dark); color: #fff; text-align: center;
+  }
+  .cta-final::before {
+    content: ''; position: absolute; inset: 0; z-index: -1;
+    background:
+      radial-gradient(50% 80% at 50% 0%, rgba(59,130,246,.38), transparent 70%),
+      radial-gradient(40% 70% at 80% 100%, rgba(99,102,241,.30), transparent 70%);
+  }
+  .cta-final h2 { color: #fff; font-size: clamp(1.9rem, 1rem + 2.6vw, 2.85rem); font-weight: 800; }
+  .cta-final p { margin: 1.25rem auto 0; max-width: 38rem; font-size: 1.15rem; color: rgba(226,232,240,.85); }
+  .cta-final .hero-cta { margin-top: 2.25rem; }
+  .cta-final .hero-note a { color: var(--slate-200); text-decoration: underline; text-underline-offset: 4px; }
+  .cta-final .hero-note a:hover { color: #fff; }
+
+  /* ---------- Footer ---------- */
+  .site-footer { background: var(--brand-dark); color: var(--slate-400); border-top: 1px solid rgba(255,255,255,.06); padding-block: 3rem; }
+  .footer-inner { display: flex; flex-direction: column; gap: 1.5rem; }
+  @media (min-width: 720px) { .footer-inner { flex-direction: row; align-items: center; justify-content: space-between; } }
+  .footer-brand { display: flex; align-items: center; gap: .85rem; }
+  .footer-brand img { height: 1.5rem; width: auto; }
+  .footer-brand span { font-size: .9rem; }
+  .footer-links { display: flex; flex-wrap: wrap; gap: .5rem 1.5rem; font-size: .9rem; }
+  .footer-links a { transition: color .2s var(--ease); }
+  .footer-links a:hover { color: #fff; }
+
+  /* ---------- Scroll reveal + motion ---------- */
+  .reveal { opacity: 0; transform: translateY(22px); transition: opacity .7s var(--ease), transform .7s var(--ease); }
+  .reveal.in { opacity: 1; transform: none; }
+  .reveal.d1 { transition-delay: .08s; }
+  .reveal.d2 { transition-delay: .16s; }
+  .reveal.d3 { transition-delay: .24s; }
+
+  .hero-inner > * { animation: rise .8s var(--ease) both; }
+  .hero-inner > *:nth-child(1) { animation-delay: .05s; }
+  .hero-inner > *:nth-child(2) { animation-delay: .15s; }
+  .hero-inner > *:nth-child(3) { animation-delay: .25s; }
+  .hero-inner > *:nth-child(4) { animation-delay: .35s; }
+  .hero-inner > *:nth-child(5) { animation-delay: .45s; }
+  @keyframes rise { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: none; } }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
+    .reveal { opacity: 1; transform: none; }
+    .hero-stack .layer { animation: none; }
+  }
+
+  /* ---------- Inline brand logo (drawn into the page, never breaks) ---------- */
+  .logo-set .logo-svg { height: 2.75rem; width: auto; aspect-ratio: 11 / 3; display: block; transition: opacity .3s var(--ease); }
+  @media (max-width: 480px) { .logo-set .logo-svg { height: 2.4rem; } }
+  .logo-set .logo-dark { color: #fff; }
+  .logo-set .logo-light { color: var(--ink); }
+  .footer-brand .logo-svg { height: 1.5rem; width: auto; aspect-ratio: 11 / 3; color: #fff; }
+
+  /* ---------- Hero trust line ---------- */
+  .hero-trust {
+    margin: 1.9rem auto 0; max-width: 40rem;
+    font-size: .92rem; line-height: 1.6;
+    color: rgba(203,213,225,.82);
+    border-top: 1px solid rgba(255,255,255,.14); padding-top: 1.6rem;
+  }
+
+  /* ---------- Inline app mockups in proof cards ---------- */
+  .app-shot svg { width: 100%; height: 100%; display: block; }
+
+  /* ---------- Print / PDF safety: keep colours, show all content ---------- */
+  @media print {
+    * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .reveal { opacity: 1 !important; transform: none !important; }
+    .site-header { position: static; }
+    .hero, .cta-final, .site-footer { background: var(--brand-dark) !important; }
+  }
+</style>
+<noscript><style>.reveal { opacity: 1; transform: none; }</style></noscript>
+</head>
+
+<body>
+
+<!-- Inline brand logo, defined once and reused in the header and footer. Drawn into the page so it always renders, even in PDF exports. currentColor lets one mark sit on dark and light backgrounds. -->
+<svg width="0" height="0" aria-hidden="true" focusable="false" style="position:absolute;width:0;height:0;overflow:hidden">
+  <symbol id="lf-logo" viewBox="0 0 440 120">
+    <g transform="translate(18 31) scale(0.92)">
+      <rect x="8" y="14" width="44" height="10" rx="3" fill="currentColor"/>
+      <rect x="8" y="27" width="38" height="10" rx="3" fill="#2563EB"/>
+      <rect x="8" y="40" width="44" height="10" rx="3" fill="currentColor" opacity="0.86"/>
+    </g>
+    <path fill="currentColor" d="M 90.276367,58 H 110.47656 V 52.585937 H 96.592773 V 27.443359 h -6.316406 z m 28.959373,0.369141 c 3.32227,0 5.18848,-1.3125 6.33692,-3.424805 h 0.082 V 58 h 5.90625 V 43.316406 c 0,-4.634765 -3.4043,-7.423828 -9.33106,-7.423828 -5.94726,0 -9.47461,2.830078 -9.74121,7.300781 h 5.68067 c 0.14355,-1.661132 1.62011,-2.80957 3.87597,-2.80957 2.21485,0 3.54785,1.107422 3.54785,2.707031 v 0.143555 c 0,1.394531 -1.39453,1.579102 -5.35253,1.96875 -4.51172,0.410156 -8.44922,1.804687 -8.44922,6.685547 0,4.327148 3.11718,6.480469 7.44433,6.480469 z m 1.68164,-4.204102 c -2.03027,0 -3.34277,-0.902344 -3.34277,-2.44043 0,-1.722656 1.64062,-2.522461 3.71191,-2.830078 1.94825,-0.307617 3.65039,-0.594726 4.34766,-0.984375 v 2.173828 c 0,2.337891 -1.80469,4.081055 -4.7168,4.081055 z m 13.61953,12.407227 h 3.99903 c 3.36328,0 5.45508,-1.620118 6.8291,-5.229493 l 9.53613,-24.999023 h -6.27539 l -3.65039,10.705078 c -0.51269,1.538086 -0.98437,3.117188 -1.45605,4.675781 -0.45118,-1.558593 -0.94336,-3.117187 -1.43555,-4.675781 L 138.45391,36.34375 h -6.33692 l 8.32617,21.574219 -0.59472,1.579101 c -0.57422,1.661133 -1.12793,2.296875 -2.56348,2.296875 h -2.74805 z m 30.94864,-8.080079 c 5.25,0 9.43359,-2.99414 10.2334,-7.300781 h -5.5166 c -0.55371,1.681641 -2.17383,2.768555 -4.53223,2.768555 -3.17871,0 -5.02441,-2.071289 -5.12695,-5.270508 h 15.40136 v -1.620117 c 0,-6.603516 -4.28613,-11.217774 -10.66406,-11.217774 -6.21387,0 -10.62305,4.737305 -10.62305,11.340821 0,6.583008 4.26563,11.299804 10.82813,11.299804 z m -4.90137,-13.658203 c 0.32813,-2.707031 2.11231,-4.388672 4.81934,-4.388672 2.72754,0 4.53223,1.681641 4.83984,4.388672 z M 178.28477,58 h 6.0498 V 46.269531 c 0,-3.260742 1.8252,-4.983398 4.30664,-4.983398 1.02539,0 2.15332,0.08203 2.60449,0.102539 v -5.147461 c -0.49218,-0.02051 -1.08691,-0.04102 -1.78418,-0.04102 -2.85058,0 -4.49121,1.230469 -5.29101,3.834961 h -0.0615 V 36.34375 h -5.82422 z m 28.22109,-21.65625 h -4.42969 v -1.78418 c 0,-1.722656 0.63574,-2.378906 2.37891,-2.378906 h 2.05078 v -4.737305 h -3.42481 c -4.67578,0 -7.03418,2.050782 -7.03418,6.090821 v 2.80957 h -3.91699 v 4.737305 h 3.91699 V 58 h 6.0293 V 41.081055 h 4.42969 z m 11.69179,22.148437 c 6.58301,0 11.0127,-4.511718 11.0127,-11.299804 0,-6.788086 -4.42969,-11.340821 -11.0127,-11.340821 -6.5625,0 -10.99218,4.552735 -10.99218,11.340821 0,6.788086 4.42968,11.299804 10.99218,11.299804 z m 0,-4.901367 c -2.93261,0 -4.90136,-2.378906 -4.90136,-6.398437 0,-4.040039 1.98926,-6.439453 4.90136,-6.439453 2.93262,0 4.92188,2.399414 4.92188,6.439453 0,4.019531 -1.96875,6.398437 -4.92188,6.398437 z M 231.63261,58 h 6.04981 V 46.269531 c 0,-3.260742 1.82519,-4.983398 4.30664,-4.983398 1.02539,0 2.15332,0.08203 2.60449,0.102539 v -5.147461 c -0.49219,-0.02051 -1.08691,-0.04102 -1.78418,-0.04102 -2.85058,0 -4.49121,1.230469 -5.29101,3.834961 h -0.0615 V 36.34375 h -5.82422 z m 15.0961,0 h 6.04981 V 45.223633 c 0,-2.789063 1.72265,-4.347656 3.87598,-4.347656 2.1123,0 3.58886,1.456054 3.58886,3.711914 V 58 h 5.82422 V 44.957031 c 0,-2.419922 1.45606,-4.081054 3.79395,-4.081054 2.07129,0 3.67089,1.271484 3.67089,3.875976 V 58 h 6.0293 V 43.644531 c 0,-4.96289 -3.09668,-7.751953 -7.25976,-7.751953 -3.1377,0 -5.80371,1.579102 -6.93164,4.224609 -0.90235,-2.645507 -3.34278,-4.224609 -6.25489,-4.224609 -2.74804,0 -5.27051,1.415039 -6.5625,4.347656 V 36.34375 h -5.82422 z"/>
+    <path fill="currentColor" opacity="0.55" d="m 93.896484,90.146484 c 2.050782,0 3.234375,-1.078125 3.234375,-2.560547 0,-1.576171 -1.40039,-2.173828 -2.513672,-2.460937 l -0.849609,-0.222656 c -0.667969,-0.175782 -1.570312,-0.486328 -1.570312,-1.3125 0,-0.738282 0.667968,-1.277344 1.728515,-1.277344 0.990235,0 1.699219,0.457031 1.78711,1.253906 h 1.300781 c -0.04102,-1.388672 -1.265625,-2.414062 -3.058594,-2.414062 -1.757812,0 -3.09375,1.001953 -3.09375,2.513672 0,1.195312 0.84375,1.927734 2.273438,2.308593 l 1.019531,0.28125 c 0.9375,0.251953 1.658203,0.550782 1.658203,1.3125 0,0.84375 -0.814453,1.40625 -1.921875,1.40625 -1.007813,0 -1.851563,-0.445312 -1.927734,-1.40039 h -1.341797 c 0.08203,1.59375 1.3125,2.572265 3.27539,2.572265 z M 103.81758,90 h 1.33594 v -3.474609 l 3.20507,-5.25586 h -1.55273 l -1.62305,2.783203 c -0.25781,0.439453 -0.46875,0.832032 -0.68554,1.359375 -0.2168,-0.515625 -0.42774,-0.902343 -0.69727,-1.359375 l -1.64062,-2.783203 h -1.5586 l 3.2168,5.25586 z m 11.28633,0.146484 c 2.05078,0 3.23437,-1.078125 3.23437,-2.560547 0,-1.576171 -1.40039,-2.173828 -2.51367,-2.460937 L 114.975,84.902344 c -0.66797,-0.175782 -1.57031,-0.486328 -1.57031,-1.3125 0,-0.738282 0.66797,-1.277344 1.72851,-1.277344 0.99024,0 1.69922,0.457031 1.78711,1.253906 h 1.30078 c -0.041,-1.388672 -1.26562,-2.414062 -3.05859,-2.414062 -1.75781,0 -3.09375,1.001953 -3.09375,2.513672 0,1.195312 0.84375,1.927734 2.27344,2.308593 l 1.01953,0.28125 c 0.9375,0.251953 1.6582,0.550782 1.6582,1.3125 0,0.84375 -0.81445,1.40625 -1.92187,1.40625 -1.00782,0 -1.85157,-0.445312 -1.92774,-1.40039 h -1.34179 c 0.082,1.59375 1.3125,2.572265 3.27539,2.572265 z m 6.8625,-7.728515 h 2.72461 V 90 h 1.34179 v -7.582031 h 2.71289 v -1.148438 h -6.77929 z M 132.78984,90 h 5.53125 v -1.148438 h -4.19531 v -2.689453 h 3.86719 v -1.142578 h -3.86719 v -2.601562 h 4.16016 v -1.148438 h -5.4961 z m 9.78633,0 h 1.30078 v -4.699219 c 0,-0.667969 -0.0293,-1.787109 -0.0527,-2.701172 0.33398,1.078125 0.67969,2.173828 0.8789,2.701172 L 146.51367,90 h 1.14258 l 1.78711,-4.699219 c 0.19922,-0.544922 0.5625,-1.669922 0.87305,-2.730469 -0.0176,0.972657 -0.0469,2.085938 -0.0469,2.730469 V 90 h 1.33008 v -8.730469 h -1.98047 l -1.875,5.009766 c -0.16992,0.480469 -0.44531,1.453125 -0.65039,2.232422 -0.19922,-0.796875 -0.47461,-1.763672 -0.64453,-2.232422 l -1.9043,-5.009766 h -1.96875 z m 19.25039,0 h 5.29102 v -1.148438 h -3.95508 v -7.582031 h -1.33594 z m 7.76485,-7.582031 h 2.72461 V 90 h 1.34179 v -7.582031 h 2.71289 v -1.148438 h -6.77929 z M 183.25664,90 c 2.65429,0 4.19531,-1.646484 4.19531,-4.376953 0,-2.712891 -1.54102,-4.353516 -4.11328,-4.353516 h -2.92383 V 90 Z m -1.50586,-1.171875 v -6.386719 h 1.5 c 1.9043,0 2.88867,1.13086 2.88867,3.181641 0,2.068359 -0.98437,3.205078 -2.95898,3.205078 z"/>
+  </symbol>
+</svg>
+
+<a href="#main" class="skip-link">Skip to content</a>
 
 <!-- Header -->
-<header class="sticky top-0 z-40 bg-white/85 backdrop-blur border-b border-slate-200">
-  <div class="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
-    <a href="/" class="flex items-center" aria-label="Layerform System Ltd, home">
-      <img src="/images/logo-primary.svg" alt="Layerform" class="h-7 w-auto">
+<header class="site-header" id="site-header">
+  <div class="container bar">
+    <a href="/" class="logo-set" aria-label="Layerform System Ltd, home">
+      <svg class="logo-svg logo-dark" viewBox="0 0 440 120" role="img" aria-label="Layerform"><use href="#lf-logo"/></svg>
+      <svg class="logo-svg logo-light" viewBox="0 0 440 120" aria-hidden="true"><use href="#lf-logo"/></svg>
     </a>
-    <a href="https://cal.eu/layerform/discovery-call" class="inline-flex items-center gap-2 text-sm font-semibold bg-accent hover:bg-accent-dark text-white px-4 py-2 rounded-md transition-colors">
-      Book a call
-      <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
-    </a>
+    <nav class="nav-links" aria-label="Primary">
+      <a href="#what-i-do">What I do</a>
+      <a href="#proof">Proof</a>
+      <a href="#how">How it works</a>
+      <a href="#faq">FAQ</a>
+    </nav>
+    <div class="header-cta">
+      <a href="https://cal.eu/layerform/discovery-call" class="btn btn-primary small">
+        Book a call
+        <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+      </a>
+    </div>
   </div>
 </header>
 
 <main id="main">
 
-<!-- Hero -->
-<section class="px-6 pt-20 pb-24 sm:pt-28 sm:pb-32">
-  <div class="max-w-4xl mx-auto text-center">
-    <h1 class="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight text-ink leading-[1.1]">
-      Grow your operation without growing your admin.
-    </h1>
-    <p class="mt-7 text-lg sm:text-xl text-slate-600 max-w-2xl mx-auto leading-relaxed">
-      I build <span class="text-ink font-semibold">The Operations Layer</span> for logistics and delivery firms, and other operations-heavy businesses. Custom software and automation that sits over the tools you already use and takes the manual operations work off your team, so you can take on more without piling on admin.
-    </p>
-    <div class="mt-10 flex flex-col items-center gap-3">
-      <a href="https://cal.eu/layerform/discovery-call" class="inline-flex items-center gap-2 text-base font-semibold bg-accent hover:bg-accent-dark text-white px-7 py-3.5 rounded-md transition-colors shadow-sm">
-        Book a call
-        <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
-      </a>
-      <p class="text-sm text-slate-500">30-minute discovery call. No cost, no obligation.</p>
-    </div>
-    <p class="mt-12 pt-8 border-t border-slate-200 text-sm text-slate-500 max-w-2xl mx-auto leading-relaxed">
-      Over 15 years turning manual processes into working software. I've built and sold a business, run a logistics company for six years, and built a performance dashboard used at the NHS.
-    </p>
-  </div>
-</section>
-
-<!-- Problem -->
-<section class="px-6 py-20 sm:py-24 bg-slate-50 border-y border-slate-200">
-  <div class="max-w-3xl mx-auto">
-    <h2 class="text-3xl sm:text-4xl font-bold tracking-tight text-ink text-center">
-      The work that quietly eats your week
-    </h2>
-    <p class="mt-6 text-lg text-slate-600 leading-relaxed text-center">
-      Most operations-heavy businesses lose hours every week to manual admin. Rotas and shift planning, driver and staff compliance, vehicle checks, chasing documents, re-keying the same job data between systems, updating spreadsheets by hand. It is slow, it is easy to get wrong, and it quietly caps how much work you can take on.
-    </p>
-  </div>
-</section>
-
-<!-- What I do -->
-<section id="what-i-do" class="px-6 py-20 sm:py-28">
-  <div class="max-w-4xl mx-auto">
-    <h2 class="text-3xl sm:text-4xl font-bold tracking-tight text-ink text-center">What I do</h2>
-    <p class="mt-6 text-lg text-slate-600 leading-relaxed text-center max-w-3xl mx-auto">
-      I build <span class="text-ink font-semibold">The Operations Layer</span>: custom software and automation that sits over the tools you already use, so your team stops doing by hand what software should be doing for them. Usually a mix of these.
-    </p>
-
-    <ul class="mt-12 grid gap-5 sm:grid-cols-2">
-      <li class="flex gap-4 p-6 rounded-lg border border-slate-200 bg-white">
-        <span class="flex-shrink-0 mt-1 w-6 h-6 rounded-full bg-accent/10 text-accent flex items-center justify-center">
-          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+  <!-- Hero -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero-inner">
+        <span class="eyebrow">
+          <svg class="mark" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="4" rx="2" fill="#fff"/><rect x="3" y="10" width="14" height="4" rx="2" fill="#2563EB"/><rect x="3" y="15" width="18" height="4" rx="2" fill="#fff" opacity="0.82"/></svg>
+          The Operations Layer
         </span>
-        <p class="text-slate-700 leading-relaxed">Automate the repetitive operations and admin work that eats your team's time.</p>
-      </li>
-      <li class="flex gap-4 p-6 rounded-lg border border-slate-200 bg-white">
-        <span class="flex-shrink-0 mt-1 w-6 h-6 rounded-full bg-accent/10 text-accent flex items-center justify-center">
-          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
-        </span>
-        <p class="text-slate-700 leading-relaxed">Connect the tools you already use, so the same data stops being typed in by hand.</p>
-      </li>
-      <li class="flex gap-4 p-6 rounded-lg border border-slate-200 bg-white">
-        <span class="flex-shrink-0 mt-1 w-6 h-6 rounded-full bg-accent/10 text-accent flex items-center justify-center">
-          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
-        </span>
-        <p class="text-slate-700 leading-relaxed">Build custom internal software when off-the-shelf products do not fit how you actually work.</p>
-      </li>
-      <li class="flex gap-4 p-6 rounded-lg border border-slate-200 bg-white">
-        <span class="flex-shrink-0 mt-1 w-6 h-6 rounded-full bg-accent/10 text-accent flex items-center justify-center">
-          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
-        </span>
-        <p class="text-slate-700 leading-relaxed">Replace spreadsheets and paper trails with one system your team can trust.</p>
-      </li>
-    </ul>
-
-    <p class="mt-12 text-center text-slate-600">
-      I work with logistics and delivery firms, and other professional and local businesses: real estate, legal and accountancy.
-    </p>
-  </div>
-</section>
-
-<!-- About -->
-<section id="about" class="px-6 py-20 sm:py-28 bg-slate-50 border-y border-slate-200">
-  <div class="max-w-3xl mx-auto">
-    <h2 class="text-3xl sm:text-4xl font-bold tracking-tight text-ink text-center">
-      Who you're working with
-    </h2>
-    <div class="mt-8 text-lg text-slate-600 leading-relaxed space-y-5">
-      <p>
-        I'm Rashid, founder of Layerform System Ltd. I've spent over 15 years turning messy manual processes into working systems.
-      </p>
-      <p>
-        I built and sold a travel business in Dubai that ran on an automated booking system, ran a logistics company for six years, and built an automated performance dashboard at the NHS.
-      </p>
-      <p>
-        I know the logistics side from the inside, which is why DSPOps started as a tool for a real operation, not a demo. I don't sell templates or theory. I ship working tools that businesses use every day.
-      </p>
-    </div>
-  </div>
-</section>
-
-<!-- Proof -->
-<section id="proof" class="px-6 py-20 sm:py-28">
-  <div class="max-w-6xl mx-auto">
-    <div class="max-w-3xl mx-auto text-center">
-      <h2 class="text-3xl sm:text-4xl font-bold tracking-tight text-ink">Software I've already built</h2>
-      <p class="mt-6 text-lg text-slate-600 leading-relaxed">
-        These are not mock-ups. They are real systems that real businesses use. Most competitors only talk about what they could build. Here is what I've shipped.
-      </p>
-    </div>
-
-    <div class="mt-14 grid gap-6 md:grid-cols-3">
-
-      <!-- Card 1, DSPOps -->
-      <article class="flex flex-col bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden">
-        <div class="aspect-[16/10] bg-slate-100 border-b border-slate-200 flex items-center justify-center">
-          <img src="/images/dspops-screenshot.svg" alt="DSPOps operations platform" class="w-full h-full object-cover">
-        </div>
-        <div class="p-6 flex flex-col flex-1">
-          <div class="flex items-center gap-2 mb-3">
-            <span class="inline-flex items-center text-xs font-medium uppercase tracking-wide text-slate-500">Logistics</span>
-            <span class="inline-flex items-center gap-1.5 text-xs font-medium px-2 py-0.5 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-200">
-              <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span> Live
-            </span>
-          </div>
-          <h3 class="text-xl font-semibold text-ink">DSPOps</h3>
-          <p class="mt-3 text-slate-600 leading-relaxed flex-1">
-            An operations platform for Amazon delivery partners. Drivers, rotas, compliance, vehicle inspections and daily operations, all in one place. Built from real logistics experience, not guesswork.
-          </p>
-          <a href="https://dspops.app/" target="_blank" rel="noopener" class="mt-5 inline-flex items-center gap-1.5 text-sm font-semibold text-accent hover:text-accent-dark group">
-            Visit dspops.app
-            <svg class="w-4 h-4 group-hover:translate-x-0.5 transition-transform" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+        <h1>Grow your operation <span class="grad">without growing your admin.</span></h1>
+        <p class="hero-sub">
+          I build <strong>The Operations Layer</strong> for logistics and delivery firms, and other operations-heavy businesses. Custom software and automation that sits over the tools you already use and takes the manual operations work off your team, so you can take on more without piling on admin.
+        </p>
+        <div class="hero-cta">
+          <a href="https://cal.eu/layerform/discovery-call" class="btn btn-primary">
+            Book a call
+            <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
           </a>
+          <p class="hero-note">30-minute discovery call. No cost, no obligation.</p>
         </div>
-      </article>
-
-      <!-- Card 2, Estate Revenue Manager -->
-      <article class="flex flex-col bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden">
-        <div class="aspect-[16/10] bg-slate-100 border-b border-slate-200 flex items-center justify-center">
-          <img src="/images/estate-revenue-manager.svg" alt="Estate Revenue Manager screenshot" class="w-full h-full object-cover">
-        </div>
-        <div class="p-6 flex flex-col flex-1">
-          <div class="flex items-center gap-2 mb-3">
-            <span class="inline-flex items-center text-xs font-medium uppercase tracking-wide text-slate-500">Property</span>
-            <span class="inline-flex items-center gap-1.5 text-xs font-medium px-2 py-0.5 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-200">
-              <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span> Live
-            </span>
-          </div>
-          <h3 class="text-xl font-semibold text-ink">Estate Revenue Manager</h3>
-          <p class="mt-3 text-slate-600 leading-relaxed flex-1">
-            A staff rota and revenue management system for high-end residential property firms. Scheduling, revenue tracking, forecasting and exportable reports.
-          </p>
-          <p class="mt-5 text-sm text-slate-400">Private system, no public link.</p>
-        </div>
-      </article>
-
-      <!-- Card 3, Case management (in build) -->
-      <article class="flex flex-col bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden">
-        <div class="aspect-[16/10] bg-slate-100 border-b border-slate-200 flex items-center justify-center">
-          <img src="/images/case-management.svg" alt="Case management system screenshot" class="w-full h-full object-cover">
-        </div>
-        <div class="p-6 flex flex-col flex-1">
-          <div class="flex items-center gap-2 mb-3">
-            <span class="inline-flex items-center text-xs font-medium uppercase tracking-wide text-slate-500">Legal</span>
-            <span class="inline-flex items-center gap-1.5 text-xs font-medium px-2 py-0.5 rounded-full bg-amber-50 text-amber-700 border border-amber-200">
-              <span class="w-1.5 h-1.5 rounded-full bg-amber-500"></span> In build
-            </span>
-          </div>
-          <h3 class="text-xl font-semibold text-ink">Case management system</h3>
-          <p class="mt-3 text-slate-600 leading-relaxed flex-1">
-            I'm currently building a case management platform for a UK immigration law firm. It replaces paper files, spreadsheets and shared inboxes with one place for cases, deadlines, documents and client updates.
-          </p>
-          <p class="mt-5 text-sm text-slate-400">Screenshot uses dummy data.</p>
-        </div>
-      </article>
-
+        <p class="hero-trust">
+          Over 15 years turning manual processes into working software. I've built and sold a business, run a logistics company for six years, and built a performance dashboard used at the NHS.
+        </p>
+      </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- How it works -->
-<section id="how" class="px-6 py-20 sm:py-28 bg-slate-50 border-y border-slate-200">
-  <div class="max-w-5xl mx-auto">
-    <h2 class="text-3xl sm:text-4xl font-bold tracking-tight text-ink text-center">
-      How I build The Operations Layer for you
-    </h2>
-
-    <ol class="mt-14 grid gap-6 md:grid-cols-3">
-      <li class="relative p-7 rounded-xl border border-slate-200 bg-white">
-        <div class="flex items-center gap-3 mb-4">
-          <span class="inline-flex items-center justify-center w-9 h-9 rounded-full bg-accent text-white font-semibold text-sm">1</span>
-          <h3 class="text-lg font-semibold text-ink">Discover</h3>
+  <!-- Problem -->
+  <section class="band-light">
+    <div class="container">
+      <div class="problem-card">
+        <h2 class="reveal" style="font-size:clamp(1.9rem,1rem + 2.6vw,2.85rem);font-weight:800;">The work that quietly eats your week</h2>
+        <p class="lead reveal d1">
+          Most operations-heavy businesses lose hours every week to manual admin. Rotas and shift planning, driver and staff compliance, vehicle checks, chasing documents, re-keying the same job data between systems, updating spreadsheets by hand. It is slow, it is easy to get wrong, and it quietly caps how much work you can take on.
+        </p>
+        <div class="pain-chips reveal d2">
+          <span>Rotas and shift planning</span>
+          <span>Driver and staff compliance</span>
+          <span>Vehicle checks</span>
+          <span>Re-keying job data</span>
+          <span>Updating spreadsheets</span>
         </div>
-        <p class="text-slate-600 leading-relaxed">
-          We start with a short call to find the work that's wasting the most time. Plain English, no obligation.
-        </p>
-      </li>
-      <li class="relative p-7 rounded-xl border border-slate-200 bg-white">
-        <div class="flex items-center gap-3 mb-4">
-          <span class="inline-flex items-center justify-center w-9 h-9 rounded-full bg-accent text-white font-semibold text-sm">2</span>
-          <h3 class="text-lg font-semibold text-ink">Build</h3>
-        </div>
-        <p class="text-slate-600 leading-relaxed">
-          I build the automation or software, and keep you involved so it fits how your team actually works.
-        </p>
-      </li>
-      <li class="relative p-7 rounded-xl border border-slate-200 bg-white">
-        <div class="flex items-center gap-3 mb-4">
-          <span class="inline-flex items-center justify-center w-9 h-9 rounded-full bg-accent text-white font-semibold text-sm">3</span>
-          <h3 class="text-lg font-semibold text-ink">Launch</h3>
-        </div>
-        <p class="text-slate-600 leading-relaxed">
-          We ship it, your team starts using it, and it starts saving time straight away.
-        </p>
-      </li>
-    </ol>
-  </div>
-</section>
-
-<!-- FAQ -->
-<section id="faq" class="px-6 py-20 sm:py-28">
-  <div class="max-w-3xl mx-auto">
-    <h2 class="text-3xl sm:text-4xl font-bold tracking-tight text-ink text-center">
-      Common questions
-    </h2>
-
-    <div class="mt-12 divide-y divide-slate-200 border-y border-slate-200">
-
-      <details class="group py-6">
-        <summary class="flex justify-between items-start gap-6 text-left">
-          <span class="text-lg font-semibold text-ink">What does it cost?</span>
-          <span class="faq-icon flex-shrink-0 mt-1 text-accent text-2xl leading-none font-light">+</span>
-        </summary>
-        <p class="mt-4 text-slate-600 leading-relaxed">
-          Every project is different, so I quote per project after the discovery call, once I understand the work involved. No retainers you don't need, no surprises.
-        </p>
-      </details>
-
-      <details class="group py-6">
-        <summary class="flex justify-between items-start gap-6 text-left">
-          <span class="text-lg font-semibold text-ink">Who is this for?</span>
-          <span class="faq-icon flex-shrink-0 mt-1 text-accent text-2xl leading-none font-light">+</span>
-        </summary>
-        <p class="mt-4 text-slate-600 leading-relaxed">
-          Logistics and delivery firms first, and other operations-heavy businesses: real estate, legal, accountancy and similar. If your team spends hours on admin that feels like it should be automated, it probably can be.
-        </p>
-      </details>
-
-      <details class="group py-6">
-        <summary class="flex justify-between items-start gap-6 text-left">
-          <span class="text-lg font-semibold text-ink">How long does it take?</span>
-          <span class="faq-icon flex-shrink-0 mt-1 text-accent text-2xl leading-none font-light">+</span>
-        </summary>
-        <p class="mt-4 text-slate-600 leading-relaxed">
-          Small automations can be live in days. The Operations Layer for a whole firm takes longer, but you'll see working pieces early instead of waiting months for one big reveal.
-        </p>
-      </details>
-
-      <details class="group py-6">
-        <summary class="flex justify-between items-start gap-6 text-left">
-          <span class="text-lg font-semibold text-ink">Do I need to be technical?</span>
-          <span class="faq-icon flex-shrink-0 mt-1 text-accent text-2xl leading-none font-light">+</span>
-        </summary>
-        <p class="mt-4 text-slate-600 leading-relaxed">
-          No. That's the whole point. I handle the technical side and keep you in the loop in plain English.
-        </p>
-      </details>
-
-      <details class="group py-6">
-        <summary class="flex justify-between items-start gap-6 text-left">
-          <span class="text-lg font-semibold text-ink">I'm not sure what to automate. Can you help?</span>
-          <span class="faq-icon flex-shrink-0 mt-1 text-accent text-2xl leading-none font-light">+</span>
-        </summary>
-        <p class="mt-4 text-slate-600 leading-relaxed">
-          Yes. That's what the discovery call is for. I'll help you spot the biggest time-wasters, even if you don't know where to start.
-        </p>
-      </details>
-
+      </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- Final CTA -->
-<section class="px-6 py-20 sm:py-28 bg-ink text-white">
-  <div class="max-w-3xl mx-auto text-center">
-    <h2 class="text-3xl sm:text-4xl font-bold tracking-tight text-white">
-      Let's find your biggest operational bottleneck
-    </h2>
-    <p class="mt-6 text-lg text-slate-300 leading-relaxed max-w-2xl mx-auto">
-      If admin is capping how much your team can take on, book a short call and we'll find the one change that would make the biggest difference.
-    </p>
-    <div class="mt-10 flex flex-col items-center gap-4">
-      <a href="https://cal.eu/layerform/discovery-call" class="inline-flex items-center gap-2 text-base font-semibold bg-accent hover:bg-accent-dark text-white px-7 py-3.5 rounded-md transition-colors">
-        Book a call
-        <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
-      </a>
-      <p class="text-sm text-slate-400">
-        Or email me, <a href="mailto:rashid@layerformsystem.co.uk" class="text-slate-200 hover:text-white underline underline-offset-4">rashid@layerformsystem.co.uk</a>
+  <!-- What I do -->
+  <section id="what-i-do">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow reveal"><span class="dot"></span> What I do</span>
+        <h2 class="reveal">Software and automation, built around how you work</h2>
+        <p class="reveal d1">
+          I build <strong style="color:var(--ink);font-weight:600;">The Operations Layer</strong>: custom software and automation that sits over the tools you already use, so your team stops doing by hand what software should be doing for them. Usually a mix of these.
+        </p>
+      </div>
+
+      <div class="grid-2">
+        <div class="feature reveal">
+          <span class="icon"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg></span>
+          <p>Automate the repetitive operations and admin work that eats your team's time.</p>
+        </div>
+        <div class="feature reveal d1">
+          <span class="icon"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M13.828 10.172a4 4 0 010 5.656l-3 3a4 4 0 01-5.656-5.656l1.5-1.5M10.172 13.828a4 4 0 010-5.656l3-3a4 4 0 015.656 5.656l-1.5 1.5"/></svg></span>
+          <p>Connect the tools you already use, so the same data stops being typed in by hand.</p>
+        </div>
+        <div class="feature reveal">
+          <span class="icon"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/></svg></span>
+          <p>Build custom internal software when off-the-shelf products do not fit how you actually work.</p>
+        </div>
+        <div class="feature reveal d1">
+          <span class="icon"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M4 7v10c0 1.1 3.6 2 8 2s8-.9 8-2V7M4 7c0 1.1 3.6 2 8 2s8-.9 8-2M4 7c0-1.1 3.6-2 8-2s8 .9 8 2m0 5c0 1.1-3.6 2-8 2s-8-.9-8-2"/></svg></span>
+          <p>Replace spreadsheets and paper trails with one system your team can trust.</p>
+        </div>
+      </div>
+
+      <p class="industries reveal d2">
+        I work with <strong>logistics and delivery firms, and other professional and local businesses: real estate, legal and accountancy.</strong>
       </p>
     </div>
-  </div>
-</section>
+  </section>
+
+  <!-- Proof -->
+  <section id="proof" class="band-light">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow reveal"><span class="dot"></span> Proof</span>
+        <h2 class="reveal">Software I've already built</h2>
+        <p class="reveal d1">
+          Real systems that real businesses use, not concepts or slideware. Most competitors only talk about what they could build. Here is what I've shipped.
+        </p>
+      </div>
+
+      <div class="grid-3">
+
+        <!-- DSPOps -->
+        <article class="app-card reveal">
+          <div class="app-frame">
+            <div class="app-chrome" aria-hidden="true"><i></i><i></i><i></i></div>
+            <div class="app-shot">
+              <svg viewBox="0 0 320 200" role="img" aria-label="DSPOps operations dashboard illustration" xmlns="http://www.w3.org/2000/svg">
+                <rect width="320" height="200" fill="#F8FAFC"/>
+                <rect width="56" height="200" fill="#0F172A"/>
+                <rect x="14" y="16" width="28" height="6" rx="3" fill="#2563EB"/>
+                <rect x="14" y="40" width="28" height="5" rx="2.5" fill="#334155"/>
+                <rect x="14" y="54" width="28" height="5" rx="2.5" fill="#1E293B"/>
+                <rect x="14" y="68" width="28" height="5" rx="2.5" fill="#1E293B"/>
+                <rect x="14" y="82" width="28" height="5" rx="2.5" fill="#1E293B"/>
+                <rect x="56" width="264" height="30" fill="#FFFFFF"/>
+                <line x1="56" y1="30" x2="320" y2="30" stroke="#E2E8F0"/>
+                <rect x="72" y="12" width="70" height="7" rx="3.5" fill="#0F172A"/>
+                <rect x="268" y="10" width="36" height="11" rx="5.5" fill="#DBEAFE"/>
+                <rect x="72" y="44" width="72" height="40" rx="6" fill="#FFFFFF" stroke="#E2E8F0"/>
+                <rect x="82" y="54" width="30" height="6" rx="3" fill="#2563EB"/>
+                <rect x="82" y="66" width="44" height="5" rx="2.5" fill="#CBD5E1"/>
+                <rect x="156" y="44" width="72" height="40" rx="6" fill="#FFFFFF" stroke="#E2E8F0"/>
+                <rect x="166" y="54" width="24" height="6" rx="3" fill="#10B981"/>
+                <rect x="166" y="66" width="44" height="5" rx="2.5" fill="#CBD5E1"/>
+                <rect x="240" y="44" width="64" height="40" rx="6" fill="#FFFFFF" stroke="#E2E8F0"/>
+                <rect x="250" y="54" width="20" height="6" rx="3" fill="#F59E0B"/>
+                <rect x="250" y="66" width="40" height="5" rx="2.5" fill="#CBD5E1"/>
+                <rect x="72" y="96" width="232" height="92" rx="6" fill="#FFFFFF" stroke="#E2E8F0"/>
+                <rect x="84" y="106" width="50" height="5" rx="2.5" fill="#94A3B8"/>
+                <circle cx="90" cy="126" r="4" fill="#10B981"/>
+                <rect x="102" y="123" width="80" height="5" rx="2.5" fill="#334155"/>
+                <rect x="252" y="122" width="44" height="7" rx="3.5" fill="#EFF6FF"/>
+                <circle cx="90" cy="144" r="4" fill="#2563EB"/>
+                <rect x="102" y="141" width="96" height="5" rx="2.5" fill="#334155"/>
+                <rect x="252" y="140" width="44" height="7" rx="3.5" fill="#EFF6FF"/>
+                <circle cx="90" cy="162" r="4" fill="#F59E0B"/>
+                <rect x="102" y="159" width="70" height="5" rx="2.5" fill="#334155"/>
+                <rect x="252" y="158" width="44" height="7" rx="3.5" fill="#EFF6FF"/>
+                <circle cx="90" cy="180" r="4" fill="#10B981"/>
+                <rect x="102" y="177" width="88" height="5" rx="2.5" fill="#334155"/>
+                <rect x="252" y="176" width="44" height="7" rx="3.5" fill="#EFF6FF"/>
+              </svg>
+            </div>
+          </div>
+          <div class="app-body">
+            <div class="app-tags">
+              <span class="tag-industry">Logistics</span>
+              <span class="badge live"><i></i> Live</span>
+            </div>
+            <h3>DSPOps</h3>
+            <p class="desc">An operations platform for Amazon delivery partners. Drivers, rotas, compliance, vehicle inspections and daily operations, all in one place. Built from real logistics experience, not guesswork.</p>
+            <a href="https://dspops.app/" target="_blank" rel="noopener" class="app-link">
+              Visit dspops.app
+              <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+            </a>
+          </div>
+        </article>
+
+        <!-- Estate Revenue Manager -->
+        <article class="app-card reveal d1">
+          <div class="app-frame">
+            <div class="app-chrome" aria-hidden="true"><i></i><i></i><i></i></div>
+            <div class="app-shot">
+              <svg viewBox="0 0 320 200" role="img" aria-label="Estate Revenue Manager rota and revenue illustration" xmlns="http://www.w3.org/2000/svg">
+                <rect width="320" height="200" fill="#F8FAFC"/>
+                <rect width="320" height="30" fill="#FFFFFF"/>
+                <line x1="0" y1="30" x2="320" y2="30" stroke="#E2E8F0"/>
+                <rect x="16" y="11" width="8" height="8" rx="2" fill="#2563EB"/>
+                <rect x="30" y="12" width="64" height="7" rx="3.5" fill="#0F172A"/>
+                <rect x="16" y="44" width="180" height="140" rx="6" fill="#FFFFFF" stroke="#E2E8F0"/>
+                <rect x="60" y="54" width="20" height="5" rx="2.5" fill="#94A3B8"/>
+                <rect x="88" y="54" width="20" height="5" rx="2.5" fill="#94A3B8"/>
+                <rect x="116" y="54" width="20" height="5" rx="2.5" fill="#94A3B8"/>
+                <rect x="144" y="54" width="20" height="5" rx="2.5" fill="#94A3B8"/>
+                <rect x="172" y="54" width="16" height="5" rx="2.5" fill="#94A3B8"/>
+                <rect x="26" y="74" width="26" height="5" rx="2.5" fill="#334155"/>
+                <rect x="58" y="70" width="24" height="12" rx="3" fill="#2563EB"/>
+                <rect x="114" y="70" width="24" height="12" rx="3" fill="#60A5FA"/>
+                <rect x="170" y="70" width="20" height="12" rx="3" fill="#2563EB"/>
+                <rect x="26" y="98" width="26" height="5" rx="2.5" fill="#334155"/>
+                <rect x="86" y="94" width="24" height="12" rx="3" fill="#10B981"/>
+                <rect x="142" y="94" width="24" height="12" rx="3" fill="#2563EB"/>
+                <rect x="26" y="122" width="26" height="5" rx="2.5" fill="#334155"/>
+                <rect x="58" y="118" width="24" height="12" rx="3" fill="#60A5FA"/>
+                <rect x="114" y="118" width="24" height="12" rx="3" fill="#F59E0B"/>
+                <rect x="26" y="146" width="26" height="5" rx="2.5" fill="#334155"/>
+                <rect x="86" y="142" width="24" height="12" rx="3" fill="#2563EB"/>
+                <rect x="142" y="142" width="24" height="12" rx="3" fill="#10B981"/>
+                <rect x="170" y="142" width="18" height="12" rx="3" fill="#60A5FA"/>
+                <rect x="26" y="170" width="26" height="5" rx="2.5" fill="#334155"/>
+                <rect x="58" y="166" width="24" height="10" rx="3" fill="#2563EB"/>
+                <rect x="208" y="44" width="96" height="140" rx="6" fill="#FFFFFF" stroke="#E2E8F0"/>
+                <rect x="220" y="54" width="40" height="5" rx="2.5" fill="#0F172A"/>
+                <rect x="222" y="130" width="12" height="40" rx="2" fill="#CBD5E1"/>
+                <rect x="240" y="116" width="12" height="54" rx="2" fill="#93C5FD"/>
+                <rect x="258" y="100" width="12" height="70" rx="2" fill="#60A5FA"/>
+                <rect x="276" y="84" width="12" height="86" rx="2" fill="#2563EB"/>
+                <line x1="216" y1="170" x2="298" y2="170" stroke="#E2E8F0"/>
+              </svg>
+            </div>
+          </div>
+          <div class="app-body">
+            <div class="app-tags">
+              <span class="tag-industry">Property</span>
+              <span class="badge live"><i></i> Live</span>
+            </div>
+            <h3>Estate Revenue Manager</h3>
+            <p class="desc">A staff rota and revenue management system for high-end residential property firms. Scheduling, revenue tracking, forecasting and exportable reports.</p>
+            <p class="app-note">Private system, no public link.</p>
+          </div>
+        </article>
+
+        <!-- Case management -->
+        <article class="app-card reveal d2">
+          <div class="app-frame">
+            <div class="app-chrome" aria-hidden="true"><i></i><i></i><i></i></div>
+            <div class="app-shot">
+              <svg viewBox="0 0 320 200" role="img" aria-label="Case management system illustration" xmlns="http://www.w3.org/2000/svg">
+                <rect width="320" height="200" fill="#F8FAFC"/>
+                <rect width="320" height="30" fill="#FFFFFF"/>
+                <line x1="0" y1="30" x2="320" y2="30" stroke="#E2E8F0"/>
+                <rect x="16" y="11" width="60" height="7" rx="3.5" fill="#0F172A"/>
+                <rect x="210" y="9" width="94" height="13" rx="6.5" fill="#F1F5F9" stroke="#E2E8F0"/>
+                <circle cx="220" cy="15.5" r="3" fill="none" stroke="#94A3B8" stroke-width="1.5"/>
+                <rect x="16" y="44" width="288" height="140" rx="6" fill="#FFFFFF" stroke="#E2E8F0"/>
+                <circle cx="34" cy="62" r="8" fill="#DBEAFE"/>
+                <rect x="50" y="56" width="90" height="5" rx="2.5" fill="#334155"/>
+                <rect x="50" y="65" width="60" height="4" rx="2" fill="#CBD5E1"/>
+                <rect x="250" y="56" width="44" height="12" rx="6" fill="#ECFDF5"/>
+                <circle cx="260" cy="62" r="2.5" fill="#10B981"/>
+                <line x1="28" y1="80" x2="292" y2="80" stroke="#F1F5F9"/>
+                <circle cx="34" cy="98" r="8" fill="#FEF3C7"/>
+                <rect x="50" y="92" width="78" height="5" rx="2.5" fill="#334155"/>
+                <rect x="50" y="101" width="66" height="4" rx="2" fill="#CBD5E1"/>
+                <rect x="250" y="92" width="44" height="12" rx="6" fill="#FFFBEB"/>
+                <circle cx="260" cy="98" r="2.5" fill="#F59E0B"/>
+                <line x1="28" y1="116" x2="292" y2="116" stroke="#F1F5F9"/>
+                <circle cx="34" cy="134" r="8" fill="#DBEAFE"/>
+                <rect x="50" y="128" width="96" height="5" rx="2.5" fill="#334155"/>
+                <rect x="50" y="137" width="54" height="4" rx="2" fill="#CBD5E1"/>
+                <rect x="250" y="128" width="44" height="12" rx="6" fill="#EFF6FF"/>
+                <circle cx="260" cy="134" r="2.5" fill="#2563EB"/>
+                <line x1="28" y1="152" x2="292" y2="152" stroke="#F1F5F9"/>
+                <circle cx="34" cy="170" r="8" fill="#ECFDF5"/>
+                <rect x="50" y="164" width="84" height="5" rx="2.5" fill="#334155"/>
+                <rect x="50" y="173" width="60" height="4" rx="2" fill="#CBD5E1"/>
+                <rect x="250" y="164" width="44" height="12" rx="6" fill="#ECFDF5"/>
+                <circle cx="260" cy="170" r="2.5" fill="#10B981"/>
+              </svg>
+            </div>
+          </div>
+          <div class="app-body">
+            <div class="app-tags">
+              <span class="tag-industry">Legal</span>
+              <span class="badge build"><i></i> In build</span>
+            </div>
+            <h3>Case management system</h3>
+            <p class="desc">I'm currently building a case management platform for a UK immigration law firm. It replaces paper files, spreadsheets and shared inboxes with one place for cases, deadlines, documents and client updates.</p>
+            <p class="app-note">Illustrative preview. Currently in build.</p>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- How it works -->
+  <section id="how">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow reveal"><span class="dot"></span> How it works</span>
+        <h2 class="reveal">How I build The Operations Layer for you</h2>
+      </div>
+      <ol class="steps" style="list-style:none;margin-block:0;padding:0;">
+        <li class="step reveal">
+          <div class="num">1</div>
+          <h3>Discover</h3>
+          <p>We start with a short call to find the work that's wasting the most time. Plain English, no obligation.</p>
+        </li>
+        <li class="step reveal d1">
+          <div class="num">2</div>
+          <h3>Build</h3>
+          <p>I build the automation or software, and keep you involved so it fits how your team actually works.</p>
+        </li>
+        <li class="step reveal d2">
+          <div class="num">3</div>
+          <h3>Launch</h3>
+          <p>We ship it, your team starts using it, and it starts saving time straight away.</p>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- About -->
+  <section class="band-light">
+    <div class="container">
+      <div class="about">
+        <div class="section-head" style="text-align:left;margin-inline:0;">
+          <span class="eyebrow reveal"><span class="dot"></span> About</span>
+          <h2 class="reveal">Who you're working with</h2>
+        </div>
+        <div class="body">
+          <p class="reveal d1">I'm Rashid, founder of Layerform System Ltd. I've spent over 15 years turning messy manual processes into working systems.</p>
+          <p class="reveal d1">I built and sold a travel business in Dubai that ran on an automated booking system, ran a logistics company for six years, and built an automated performance dashboard at the NHS.</p>
+          <p class="reveal d2">I know the logistics side from the inside, which is why DSPOps started as a tool for a real operation, not a demo. I don't sell templates or theory. I ship working tools that businesses use every day.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow reveal"><span class="dot"></span> FAQ</span>
+        <h2 class="reveal">Common questions</h2>
+      </div>
+      <div class="faq">
+        <details class="qa reveal">
+          <summary>What does it cost? <span class="icon" aria-hidden="true"></span></summary>
+          <p class="answer">Every project is different, so I quote per project after the discovery call, once I understand the work involved. No retainers you don't need, no surprises.</p>
+        </details>
+        <details class="qa reveal">
+          <summary>Who is this for? <span class="icon" aria-hidden="true"></span></summary>
+          <p class="answer">Logistics and delivery firms first, and other operations-heavy businesses: real estate, legal, accountancy and similar. If your team spends hours on admin that feels like it should be automated, it probably can be.</p>
+        </details>
+        <details class="qa reveal">
+          <summary>How long does it take? <span class="icon" aria-hidden="true"></span></summary>
+          <p class="answer">Small automations can be live in days. The Operations Layer for a whole firm takes longer, but you'll see working pieces early instead of waiting months for one big reveal.</p>
+        </details>
+        <details class="qa reveal">
+          <summary>Do I need to be technical? <span class="icon" aria-hidden="true"></span></summary>
+          <p class="answer">No. That's the whole point. I handle the technical side and keep you in the loop in plain English.</p>
+        </details>
+        <details class="qa reveal">
+          <summary>I'm not sure what to automate. Can you help? <span class="icon" aria-hidden="true"></span></summary>
+          <p class="answer">Yes. That's what the discovery call is for. I'll help you spot the biggest time-wasters, even if you don't know where to start.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- Final CTA -->
+  <section class="cta-final">
+    <div class="container">
+      <h2 class="reveal">Let's find your biggest operational bottleneck</h2>
+      <p class="reveal d1">If admin is capping how much your team can take on, book a short call and we'll find the one change that would make the biggest difference.</p>
+      <div class="hero-cta reveal d2">
+        <a href="https://cal.eu/layerform/discovery-call" class="btn btn-primary">
+          Book a call
+          <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+        </a>
+        <p class="hero-note">Or email me, <a href="mailto:rashid@layerformsystem.co.uk">rashid@layerformsystem.co.uk</a></p>
+      </div>
+    </div>
+  </section>
 
 </main>
 
 <!-- Footer -->
-<footer class="px-6 py-12 bg-ink-soft text-slate-400 border-t border-white/5">
-  <div class="max-w-6xl mx-auto flex flex-col md:flex-row md:items-center md:justify-between gap-6">
-    <div class="flex items-center gap-3">
-      <img src="/images/logo-on-dark.svg" alt="Layerform" class="h-6 w-auto">
-      <span class="text-sm">&copy; 2026 Layerform System Ltd</span>
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <div class="footer-brand">
+      <svg class="logo-svg" viewBox="0 0 440 120" role="img" aria-label="Layerform"><use href="#lf-logo"/></svg>
+      <span>&copy; 2026 Layerform System Ltd</span>
     </div>
-    <div class="flex flex-wrap items-center gap-x-6 gap-y-2 text-sm">
-      <a href="mailto:rashid@layerformsystem.co.uk" class="hover:text-white transition-colors">rashid@layerformsystem.co.uk</a>
-      <a href="https://www.linkedin.com/in/rash-q-1521a4269/" target="_blank" rel="noopener" class="hover:text-white transition-colors">LinkedIn</a>
-      <a href="/privacy.html" class="hover:text-white transition-colors">Privacy policy</a>
+    <div class="footer-links">
+      <a href="mailto:rashid@layerformsystem.co.uk">rashid@layerformsystem.co.uk</a>
+      <a href="https://www.linkedin.com/in/rash-q-1521a4269/" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="/privacy.html">Privacy policy</a>
     </div>
   </div>
 </footer>
+
+<script>
+  // Header: transparent over the dark hero, frosted-white once past it.
+  (function () {
+    var header = document.getElementById('site-header');
+    var hero = document.querySelector('.hero');
+    if (!header || !hero) return;
+    if ('IntersectionObserver' in window) {
+      var obs = new IntersectionObserver(function (entries) {
+        // Solid header once the hero has scrolled mostly out of view.
+        header.classList.toggle('scrolled', !entries[0].isIntersecting);
+      }, { rootMargin: '-72px 0px 0px 0px', threshold: 0 });
+      obs.observe(hero);
+    } else {
+      window.addEventListener('scroll', function () {
+        header.classList.toggle('scrolled', window.scrollY > hero.offsetHeight - 72);
+      }, { passive: true });
+    }
+  })();
+
+  // Scroll reveal: fade + rise elements as they enter the viewport.
+  (function () {
+    var items = document.querySelectorAll('.reveal');
+    if (!('IntersectionObserver' in window)) {
+      items.forEach(function (el) { el.classList.add('in'); });
+      return;
+    }
+    var io = new IntersectionObserver(function (entries, observer) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('in');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { rootMargin: '0px 0px -10% 0px', threshold: 0.1 });
+    items.forEach(function (el) { io.observe(el); });
+  })();
+</script>
 
 </body>
 </html>
