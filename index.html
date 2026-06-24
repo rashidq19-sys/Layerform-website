@@ -446,11 +446,12 @@
   }
 
   /* ---------- Inline brand logo (drawn into the page, never breaks) ---------- */
-  .logo-set .logo-svg { height: 2.75rem; width: auto; aspect-ratio: 11 / 3; display: block; transition: opacity .3s var(--ease); }
-  @media (max-width: 480px) { .logo-set .logo-svg { height: 2.4rem; } }
+  .logo-set { height: 3.25rem; }
+  .logo-set .logo-svg { height: 3.25rem; width: auto; aspect-ratio: 10 / 3; display: block; transition: opacity .3s var(--ease); }
+  @media (max-width: 480px) { .logo-set, .logo-set .logo-svg { height: 2.8rem; } }
   .logo-set .logo-dark { color: #fff; }
   .logo-set .logo-light { color: var(--ink); }
-  .footer-brand .logo-svg { height: 1.5rem; width: auto; aspect-ratio: 11 / 3; color: #fff; }
+  .footer-brand .logo-svg { height: 2rem; width: auto; aspect-ratio: 10 / 3; color: #fff; }
 
   /* ---------- Hero trust line ---------- */
   .hero-trust {
@@ -478,7 +479,7 @@
 
 <!-- Inline brand logo, defined once and reused in the header and footer. Drawn into the page so it always renders, even in PDF exports. currentColor lets one mark sit on dark and light backgrounds. -->
 <svg width="0" height="0" aria-hidden="true" focusable="false" style="position:absolute;width:0;height:0;overflow:hidden">
-  <symbol id="lf-logo" viewBox="0 0 440 120">
+  <symbol id="lf-logo" viewBox="16 20 280 84">
     <g transform="translate(18 31) scale(0.92)">
       <rect x="8" y="14" width="44" height="10" rx="3" fill="currentColor"/>
       <rect x="8" y="27" width="38" height="10" rx="3" fill="#2563EB"/>
@@ -495,8 +496,8 @@
 <header class="site-header" id="site-header">
   <div class="container bar">
     <a href="/" class="logo-set" aria-label="Layerform System Ltd, home">
-      <svg class="logo-svg logo-dark" viewBox="0 0 440 120" role="img" aria-label="Layerform"><use href="#lf-logo"/></svg>
-      <svg class="logo-svg logo-light" viewBox="0 0 440 120" aria-hidden="true"><use href="#lf-logo"/></svg>
+      <svg class="logo-svg logo-dark" role="img" aria-label="Layerform"><use href="#lf-logo"/></svg>
+      <svg class="logo-svg logo-light" aria-hidden="true"><use href="#lf-logo"/></svg>
     </a>
     <nav class="nav-links" aria-label="Primary">
       <a href="#what-i-do">What I do</a>
@@ -871,7 +872,7 @@
 <footer class="site-footer">
   <div class="container footer-inner">
     <div class="footer-brand">
-      <svg class="logo-svg" viewBox="0 0 440 120" role="img" aria-label="Layerform"><use href="#lf-logo"/></svg>
+      <svg class="logo-svg" role="img" aria-label="Layerform"><use href="#lf-logo"/></svg>
       <span>&copy; 2026 Layerform System Ltd</span>
     </div>
     <div class="footer-links">
