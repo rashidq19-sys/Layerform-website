@@ -15,20 +15,20 @@ site/
     logo-primary.svg          horizontal logo for light backgrounds
     logo-on-dark.svg          horizontal logo for dark backgrounds
     mark.svg                  layered mark only
-    dspops-screenshot.svg     placeholder (live link is the proof)
-    estate-revenue-manager.svg  placeholder, swap with real screenshot
-    case-management.svg       placeholder, swap with real screenshot
+    dspops-dashboard.webp     real DSPOps screenshot, used in the proof section
+    estate-revenue-dashboard.webp  real Estate Revenue Manager screenshot
+    case-management.svg       placeholder, the legal app is still in build
+    dspops-screenshot.svg     old placeholder, still used by index-premium.html
+    estate-revenue-manager.svg  old placeholder, still used by index-premium.html
 ```
 
 ## How to swap the screenshots
 
-Drop your real screenshots into `site/images/` and overwrite each placeholder, keeping the file names the same:
+The DSPOps and Estate Revenue Manager cards use real screenshots. The case management card is still a drawn placeholder because that app is in build.
 
-- `estate-revenue-manager.svg` -> replace with `estate-revenue-manager.png` (or `.jpg`)
-- `case-management.svg` -> replace with `case-management.png` (or `.jpg`)
-- `dspops-screenshot.svg` -> optional, replace with a real DSPOps screenshot
+To replace one, drop the new file into `site/images/` and update the matching `<img src=...>` line in `index.html`. The proof cards are **2:1**, so export around **1400 x 700** and aim for under 200 KB. WebP at quality 82 keeps these near 55 KB.
 
-If you change the file extension, update the matching `<img src=...>` line in `index.html`. Recommended dimensions, **1280 x 800** (16:10). Compress before uploading; aim for under 200 KB each.
+Before any real screenshot goes in here, blur out client branding, staff names, and vehicle registrations. The Estate Revenue Manager shot uses a demo tenant with sample data; the DSPOps shot is live client data with the identifying parts blurred.
 
 ## How to deploy to Railway
 

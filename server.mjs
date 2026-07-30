@@ -19,7 +19,7 @@ const server = http.createServer((req, res) =>
         headers: [{ key: 'Cache-Control', value: 'public, max-age=300, must-revalidate' }]
       },
       {
-        source: '**/*.@(svg|png|jpg|jpeg|ico|woff2)',
+        source: '**/*.@(svg|png|jpg|jpeg|webp|ico|woff2)',
         headers: [{ key: 'Cache-Control', value: 'public, max-age=31536000, immutable' }]
       }
     ]
