@@ -1150,6 +1150,23 @@
       });
     }, { rootMargin: '0px 0px 15% 0px', threshold: 0 });
     items.forEach(function (el) { io.observe(el); });
+
+    // Safety net. A browser can withhold observer callbacks while the
+    // document is hidden, so a page opened in a background tab can have
+    // its first batch swallowed. Without this, that content would stay at
+    // opacity 0 with nothing left to trigger it. Reveal anything already
+    // on screen on load, and again whenever the tab becomes visible.
+    function revealOnScreen() {
+      items.forEach(function (el) {
+        if (el.classList.contains('in')) return;
+        var r = el.getBoundingClientRect();
+        if (r.top < window.innerHeight && r.bottom > 0) el.classList.add('in');
+      });
+    }
+    window.addEventListener('load', revealOnScreen);
+    document.addEventListener('visibilitychange', function () {
+      if (document.visibilityState === 'visible') revealOnScreen();
+    });
   })();
 </script>
 
