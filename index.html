@@ -56,7 +56,11 @@
       ],
       "address": { "@type": "PostalAddress", "addressLocality": "London", "addressCountry": "GB" },
       "knowsAbout": ["AI automation", "AI consulting", "Business process automation", "Custom software development", "Bespoke internal tools", "Workflow automation"],
-      "sameAs": ["https://www.linkedin.com/in/rash-q-1521a4269/"]
+      "identifier": "16171454",
+      "sameAs": [
+        "https://www.linkedin.com/in/rash-q-1521a4269/",
+        "https://find-and-update.company-information.service.gov.uk/company/16171454"
+      ]
     },
     {
       "@type": "Person",
@@ -65,6 +69,7 @@
       "jobTitle": "AI Automation Consultant",
       "worksFor": { "@id": "https://www.layerformsystem.co.uk/#business" },
       "url": "https://www.layerformsystem.co.uk/",
+      "image": "https://www.layerformsystem.co.uk/images/rashid-headshot.webp",
       "sameAs": ["https://www.linkedin.com/in/rash-q-1521a4269/"]
     },
     {
@@ -238,12 +243,15 @@
 
   .header-cta { display: flex; align-items: center; gap: 1.25rem; }
 
-  @media (min-width: 1120px) {
+  /* Nav needs logo (174) + links (495) + button (248) + container padding
+     and comfortable gaps. Measured at 1028, so 1040 is the first width the
+     six items fit on one line. Was 1120 when a seventh item was in here. */
+  @media (min-width: 1040px) {
     .nav-links { display: flex; }
   }
 
   /* ---------- Section rhythm ---------- */
-  section { padding-block: clamp(4rem, 8vw, 7rem); }
+  section { padding-block: clamp(3.25rem, 6vw, 5.25rem); }
   .eyebrow {
     display: inline-flex; align-items: center; gap: .55rem;
     font-size: .8rem; font-weight: 600; letter-spacing: .08em; text-transform: uppercase;
@@ -329,21 +337,8 @@
   .hero-stack .layer:nth-child(3) { width: 100%; background: rgba(255,255,255,.82); animation-delay: .8s; }
   @keyframes floaty { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-6px); } }
 
-  /* ---------- Problem ---------- */
-  .problem-card {
-    max-width: 50rem; margin-inline: auto; text-align: center;
-  }
-  .problem-card .lead { margin-top: 1.5rem; }
-  .problem-card p + p { margin-top: 1.25rem; }
-  .pain-chips { margin-top: 2rem; display: flex; flex-wrap: wrap; gap: .65rem; justify-content: center; }
-  .pain-chips span {
-    font-size: .9rem; font-weight: 500; color: var(--slate-600);
-    background: var(--white); border: 1px solid var(--slate-200);
-    padding: .5rem .95rem; border-radius: 999px; box-shadow: var(--shadow-sm);
-  }
-
   /* ---------- What I do, cards ---------- */
-  .grid-2 { margin-top: 3.5rem; display: grid; gap: 1.25rem; }
+  .grid-2 { margin-top: 2.75rem; display: grid; gap: 1.25rem; }
   @media (min-width: 720px) { .grid-2 { grid-template-columns: 1fr 1fr; } }
 
   .feature {
@@ -364,7 +359,7 @@
   .industries strong { color: var(--ink); font-weight: 600; }
 
   /* ---------- Proof, app cards ---------- */
-  .grid-3 { margin-top: 3.5rem; display: grid; gap: 1.5rem; }
+  .grid-3 { margin-top: 2.75rem; display: grid; gap: 1.5rem; }
   @media (min-width: 760px) { .grid-3 { grid-template-columns: repeat(3, 1fr); } }
 
   .app-card {
@@ -395,10 +390,12 @@
   .app-link svg { width: 1rem; height: 1rem; transition: transform .25s var(--ease); }
   .app-link:hover { color: var(--accent-dark); }
   .app-link:hover svg { transform: translateX(3px); }
-  .app-note { margin-top: 1.25rem; font-size: .85rem; color: var(--slate-400); }
+  /* slate-400 on white was 2.6:1, well under AA. slate-500 clears 4.5:1
+     and still reads as a quieter note than the card body. */
+  .app-note { margin-top: 1.25rem; font-size: .85rem; color: var(--slate-500); }
 
   /* ---------- How it works, steps ---------- */
-  .steps { margin-top: 3.5rem; display: grid; gap: 1.5rem; position: relative; }
+  .steps { margin-top: 2.75rem; display: grid; gap: 1.5rem; position: relative; }
   @media (min-width: 760px) { .steps { grid-template-columns: repeat(auto-fit, minmax(12.5rem, 1fr)); } }
   .step {
     position: relative; padding: 1.9rem;
@@ -471,12 +468,15 @@
   .footer-links a { transition: color .2s var(--ease); }
   .footer-links a:hover { color: #fff; }
 
-  /* ---------- Scroll reveal + motion ---------- */
-  .reveal { opacity: 0; transform: translateY(22px); transition: opacity .7s var(--ease), transform .7s var(--ease); }
+  /* ---------- Scroll reveal + motion ----------
+     Short and close. A long fade over a big distance leaves whole
+     sections sitting blank in the viewport while someone scrolls at
+     normal speed, which reads as broken rather than polished. */
+  .reveal { opacity: 0; transform: translateY(9px); transition: opacity .26s var(--ease), transform .26s var(--ease); }
   .reveal.in { opacity: 1; transform: none; }
-  .reveal.d1 { transition-delay: .08s; }
-  .reveal.d2 { transition-delay: .16s; }
-  .reveal.d3 { transition-delay: .24s; }
+  .reveal.d1 { transition-delay: .04s; }
+  .reveal.d2 { transition-delay: .08s; }
+  .reveal.d3 { transition-delay: .12s; }
 
   .hero-inner > * { animation: rise .8s var(--ease) both; }
   .hero-inner > *:nth-child(1) { animation-delay: .05s; }
@@ -512,7 +512,7 @@
   .app-shot svg { width: 100%; height: 100%; display: block; }
 
   /* ---------- Examples checklist ---------- */
-  .checklist { margin-top: 3.5rem; display: grid; gap: 1rem; }
+  .checklist { margin-top: 2.75rem; display: grid; gap: 1rem; }
   @media (min-width: 680px) { .checklist { grid-template-columns: 1fr 1fr; } }
   .check-item {
     display: flex; gap: .85rem; align-items: flex-start;
@@ -524,6 +524,91 @@
   .check-item:hover { transform: translateY(-2px); box-shadow: var(--shadow-md); border-color: rgba(37,99,235,.25); }
   .check-item svg { flex: none; width: 1.4rem; height: 1.4rem; color: var(--accent); margin-top: .15rem; }
   .check-item p { color: var(--slate-700); }
+
+  /* ---------- Secondary, lower-commitment CTA ----------
+     Not everyone will book a call with a stranger. This is the smaller
+     door: send the process by email, get a reply. */
+  .btn-ghost {
+    background: rgba(255,255,255,.06); color: #fff;
+    border: 1px solid rgba(255,255,255,.28);
+  }
+  .btn-ghost:hover { background: rgba(255,255,255,.13); border-color: rgba(255,255,255,.45); transform: translateY(-2px); }
+  .cta-pair { display: flex; flex-wrap: wrap; gap: .75rem; justify-content: center; }
+
+  /* ---------- Visible price signal ---------- */
+  .price-note {
+    margin: 3.5rem auto 0; max-width: 46rem; text-align: center;
+    background: var(--white); border: 1px solid var(--slate-200);
+    border-left: 4px solid var(--accent);
+    border-radius: var(--radius); padding: 1.5rem 1.75rem; box-shadow: var(--shadow-sm);
+  }
+  .price-note .price-head { font-size: 1.15rem; font-weight: 700; color: var(--ink); }
+  .price-note p { margin-top: .6rem; color: var(--slate-600); }
+
+  /* ---------- Testimonials ---------- */
+  .testimonials {
+    position: relative; overflow: hidden; isolation: isolate;
+    background: var(--brand-dark); color: #fff;
+  }
+  .testimonials::before {
+    content: ''; position: absolute; inset: 0; z-index: -1;
+    background:
+      radial-gradient(55% 70% at 50% 0%, rgba(59,130,246,.28), transparent 70%),
+      radial-gradient(45% 60% at 85% 100%, rgba(99,102,241,.22), transparent 70%);
+  }
+  .testimonials .section-head h2 { color: #fff; }
+  .testimonials .section-head p { color: rgba(226,232,240,.85); }
+  .testimonials .eyebrow { color: var(--accent-light); }
+  .testimonials .eyebrow .dot { background: var(--accent-light); }
+
+  .quote-grid { margin-top: 2.75rem; display: grid; gap: 1.5rem; }
+  @media (min-width: 820px) { .quote-grid { grid-template-columns: 1fr 1fr; } }
+  .quote-card {
+    margin: 0; display: flex; flex-direction: column; padding: 2rem;
+    background: rgba(255,255,255,.055); border: 1px solid rgba(255,255,255,.13);
+    border-radius: var(--radius-lg);
+  }
+  .quote-card .mark { width: 2.1rem; height: 2.1rem; color: var(--accent-light); opacity: .8; margin-bottom: 1.1rem; }
+  .quote-card blockquote { margin: 0; flex: 1; font-size: 1.08rem; line-height: 1.7; color: rgba(241,245,249,.93); }
+  .quote-who {
+    margin-top: 1.75rem; padding-top: 1.5rem; border-top: 1px solid rgba(255,255,255,.13);
+    display: flex; align-items: center; gap: .9rem;
+  }
+  .quote-who .initials {
+    flex: none; width: 2.75rem; height: 2.75rem; border-radius: 999px;
+    display: grid; place-items: center; font-weight: 700; font-size: .9rem;
+    color: #fff; background: var(--grad-accent);
+  }
+  .quote-who .name { display: block; font-weight: 700; color: #fff; }
+  .quote-who .role { display: block; font-size: .88rem; color: rgba(203,213,225,.88); }
+
+  /* ---------- About, text beside the photo ----------
+     The old single narrow column left the right half of the section
+     empty, which read as a missing image. */
+  .about { max-width: 62rem; }
+  @media (min-width: 880px) {
+    .about { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, .9fr); gap: 3.25rem; align-items: center; }
+  }
+  .about-photo { margin: 2.5rem 0 0; }
+  @media (min-width: 880px) { .about-photo { margin: 0; } }
+  .about-photo img {
+    width: 100%; max-width: 24rem; height: auto; margin-inline: auto;
+    border-radius: var(--radius-lg); box-shadow: var(--shadow-lg);
+    border: 1px solid var(--slate-200);
+  }
+  .about-photo figcaption {
+    margin-top: .9rem; text-align: center; font-size: .88rem; color: var(--slate-600);
+  }
+
+  /* ---------- Footer legal line ---------- */
+  .footer-legal {
+    margin-top: 1.75rem; padding-top: 1.5rem; border-top: 1px solid rgba(255,255,255,.08);
+    font-size: .82rem; color: var(--slate-400); line-height: 1.7;
+  }
+  .footer-legal a { text-decoration: underline; text-underline-offset: 3px; }
+  .footer-legal a:hover { color: #fff; }
+
+  [hidden] { display: none !important; }
 
   /* ---------- Print / PDF safety: keep colours, show all content ---------- */
   @media print {
@@ -562,7 +647,6 @@
     </a>
     <nav class="nav-links" aria-label="Primary">
       <a href="#what-i-do">What I do</a>
-      <a href="/marketing-dashboards">Marketing dashboards</a>
       <a href="#examples">Examples</a>
       <a href="#how">How I help</a>
       <a href="#proof">Proof</a>
@@ -571,7 +655,7 @@
     </nav>
     <div class="header-cta">
       <a href="https://cal.eu/layerform/discovery-call" class="btn btn-primary small">
-        Book a free audit
+        Book a free workflow audit
         <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
       </a>
     </div>
@@ -593,11 +677,16 @@
           Stop drowning in messy spreadsheets, repeated data entry and chasing documents. I'm an AI consultant in London, and I build <strong>custom internal systems around how your team already works</strong>, connected to the tools you already use, with AI doing the boring parts.
         </p>
         <div class="hero-cta">
-          <a href="https://cal.eu/layerform/discovery-call" class="btn btn-primary">
-            Book a free workflow audit
-            <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
-          </a>
-          <p class="hero-note">A free 30-minute call. You leave knowing what to automate first, whether we work together or not.</p>
+          <div class="cta-pair">
+            <a href="https://cal.eu/layerform/discovery-call" class="btn btn-primary">
+              Book a free workflow audit
+              <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+            </a>
+            <a href="mailto:rashid@layerformsystem.co.uk?subject=My%20process%2C%20what%20would%20you%20automate%20first%3F" class="btn btn-ghost">
+              Email me your process instead
+            </a>
+          </div>
+          <p class="hero-note">A free 30-minute call, and you leave knowing what to automate first, whether we work together or not. Or skip the call: email me how your team works and I'll reply with what I'd automate first.</p>
         </div>
         <p class="hero-trust">
           Built by Rashid, founder of Layerform System Ltd. Over 15 years turning messy manual processes into working software, for logistics, property, legal and the NHS. The person you talk to on the call is the person who builds your system.
@@ -606,39 +695,16 @@
     </div>
   </section>
 
-  <!-- Problem -->
-  <section class="band-light">
-    <div class="container">
-      <div class="problem-card">
-        <h2 class="reveal" style="font-size:clamp(1.9rem,1rem + 2.6vw,2.85rem);font-weight:800;">The work that quietly eats your week</h2>
-        <p class="lead reveal d1">
-          Most growing firms lose whole days to work that never needed a person. Updating spreadsheets, chasing clients for missing documents and forms, checking paperwork by hand, copying data between tools, and drafting the same client updates again and again.
-        </p>
-        <p class="reveal d1">
-          Each task looks small on its own. Together they slow everything down, cause mistakes, and cap how many clients your team can take on without hiring more people.
-        </p>
-        <p class="reveal d2">
-          I don't sell templates, and I won't tell you to change how you work. I look at your actual daily processes and build custom software that runs them on autopilot.
-        </p>
-        <div class="pain-chips reveal d2">
-          <span>Updating spreadsheets</span>
-          <span>Chasing missing documents</span>
-          <span>Checking paperwork by hand</span>
-          <span>Copying data between tools</span>
-          <span>Drafting client updates</span>
-          <span>Preparing reports</span>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Examples of what can be automated -->
+  <!-- Examples of what can be automated.
+       This section absorbed the old standalone "problem" block. Both were
+       listing the same pain (spreadsheets, chasing documents, copying data),
+       so the page said it three times counting the hero. -->
   <section id="examples" class="band-light">
     <div class="container">
       <div class="section-head">
         <span class="eyebrow reveal"><span class="dot"></span> Examples</span>
-        <h2 class="reveal">Examples of what can be automated</h2>
-        <p class="reveal d1">A few of the everyday jobs a custom-built system can quietly take over. If something here sounds like your week, it can almost certainly run itself.</p>
+        <h2 class="reveal">The work that quietly eats your week</h2>
+        <p class="reveal d1">Each of these looks small on its own. Together they slow everything down, cause mistakes, and cap how many clients your team can take on without hiring. Every one of them can be handed to software.</p>
       </div>
       <div class="checklist">
         <div class="check-item reveal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg><p>Chasing documents, forms, or missing information.</p></div>
@@ -650,6 +716,9 @@
         <div class="check-item reveal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg><p>Organising tasks, cases, jobs, bookings, or staff workflows.</p></div>
         <div class="check-item reveal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg><p>Building AI agents that handle repeated admin tasks.</p></div>
       </div>
+      <p class="industries reveal d1" style="margin-top:2.5rem;">
+        I don't sell templates, and I won't tell you to change how you work. <strong>I look at your actual daily processes and build custom software that runs them.</strong>
+      </p>
     </div>
   </section>
 
@@ -803,6 +872,57 @@
     </div>
   </section>
 
+  <!-- Testimonials.
+       ================================================================
+       PLACEHOLDER WORDING, NOT YET PUBLIC. The section is finished and
+       styled; the `hidden` attribute on the <section> below is the only
+       thing keeping it off the page.
+
+       The two quotes were written as stand-ins. They are attributed to
+       real, named people at real, named companies, so they must not go
+       live until Gabi and Tariq have read their own quote and said yes
+       (or sent wording of their own to use instead).
+
+       TO PUBLISH: delete the word `hidden` from the <section> tag.
+       ================================================================ -->
+  <section id="testimonials" class="testimonials" hidden>
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow reveal"><span class="dot"></span> In their words</span>
+        <h2 class="reveal">What it changed for the people using it</h2>
+        <p class="reveal d1">The managers who run these operations day to day, on the systems above.</p>
+      </div>
+
+      <div class="quote-grid">
+
+        <figure class="quote-card reveal">
+          <svg class="mark" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M9.6 5.4c-3.5 1.6-5.6 4.6-5.6 8.4 0 3.1 1.8 5.2 4.4 5.2 2.2 0 3.9-1.6 3.9-3.8 0-2.1-1.5-3.6-3.4-3.6-.4 0-.8.1-1 .2.4-1.8 2-3.4 4-4.3zm10 0c-3.5 1.6-5.6 4.6-5.6 8.4 0 3.1 1.8 5.2 4.4 5.2 2.2 0 3.9-1.6 3.9-3.8 0-2.1-1.5-3.6-3.4-3.6-.4 0-.8.1-1 .2.4-1.8 2-3.4 4-4.3z"/></svg>
+          <blockquote>Before DSPOps we ran the depot on spreadsheets and a WhatsApp group. Now the rota, the compliance dates and the van checks all sit in one place, and the morning deployment is sorted before the drivers arrive. The damage check on the van photos picks up things we used to miss completely.</blockquote>
+          <figcaption class="quote-who">
+            <span class="initials" aria-hidden="true">GC</span>
+            <span>
+              <span class="name">Gabi Claudiu</span>
+              <span class="role">On-site Manager, ATZ, Amazon DSP</span>
+            </span>
+          </figcaption>
+        </figure>
+
+        <figure class="quote-card reveal d1">
+          <svg class="mark" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M9.6 5.4c-3.5 1.6-5.6 4.6-5.6 8.4 0 3.1 1.8 5.2 4.4 5.2 2.2 0 3.9-1.6 3.9-3.8 0-2.1-1.5-3.6-3.4-3.6-.4 0-.8.1-1 .2.4-1.8 2-3.4 4-4.3zm10 0c-3.5 1.6-5.6 4.6-5.6 8.4 0 3.1 1.8 5.2 4.4 5.2 2.2 0 3.9-1.6 3.9-3.8 0-2.1-1.5-3.6-3.4-3.6-.4 0-.8.1-1 .2.4-1.8 2-3.4 4-4.3z"/></svg>
+          <blockquote>We were tracking site cover and revenue across a stack of spreadsheets, and pulling the monthly reporting together was a job in itself. Rashid built us one system that holds the schedule and the revenue together, so the reports come out of the tool instead of out of someone's evening.</blockquote>
+          <figcaption class="quote-who">
+            <span class="initials" aria-hidden="true">TA</span>
+            <span>
+              <span class="name">Tariq Aman</span>
+              <span class="role">Manager, Rendall &amp; Rittner</span>
+            </span>
+          </figcaption>
+        </figure>
+
+      </div>
+    </div>
+  </section>
+
   <!-- How it works -->
   <section id="how">
     <div class="container">
@@ -838,6 +958,11 @@
           <p>Your team gets one clear place to run the whole operation, and the admin runs itself.</p>
         </li>
       </ol>
+
+      <div class="price-note reveal d1">
+        <p class="price-head">Fixed price per project, agreed before anything starts</p>
+        <p>Everything I build is bespoke, so I quote one fixed price after the free audit, once I have seen the work involved. No hourly billing, no hidden retainers, no surprise invoices. If the number doesn't work for you, the audit was still free and yours to keep.</p>
+      </div>
     </div>
   </section>
 
@@ -845,15 +970,22 @@
   <section class="band-light">
     <div class="container">
       <div class="about">
-        <div class="section-head" style="text-align:left;margin-inline:0;">
-          <span class="eyebrow reveal"><span class="dot"></span> About</span>
-          <h2 class="reveal">Who you're working with</h2>
+        <div class="about-text">
+          <div class="section-head" style="text-align:left;margin-inline:0;">
+            <span class="eyebrow reveal"><span class="dot"></span> About</span>
+            <h2 class="reveal">Who you're working with</h2>
+          </div>
+          <div class="body">
+            <p class="reveal d1">I'm Rashid, founder of Layerform System Ltd. I've spent over 15 years turning messy manual processes into working systems.</p>
+            <p class="reveal d1">I built and sold a travel business in Dubai that ran on an automated booking system, ran a logistics company for six years, and built an automated performance dashboard at the NHS.</p>
+            <p class="reveal d2">Based in London, I now build bespoke AI systems and custom internal tools for businesses drowning in manual admin. I don't sell templates or theory. I look at how your business actually works and build something that saves real time.</p>
+          </div>
         </div>
-        <div class="body">
-          <p class="reveal d1">I'm Rashid, founder of Layerform System Ltd. I've spent over 15 years turning messy manual processes into working systems.</p>
-          <p class="reveal d1">I built and sold a travel business in Dubai that ran on an automated booking system, ran a logistics company for six years, and built an automated performance dashboard at the NHS.</p>
-          <p class="reveal d2">Based in London, I now build bespoke AI systems and custom internal tools for businesses drowning in manual admin. I don't sell templates or theory. I look at how your business actually works and build something that saves real time.</p>
-        </div>
+        <figure class="about-photo reveal d1">
+          <img src="/images/rashid-headshot.webp" width="720" height="900" loading="lazy" decoding="async"
+               alt="Rashid, founder of Layerform System Ltd">
+          <figcaption>Rashid, founder of Layerform System Ltd</figcaption>
+        </figure>
       </div>
     </div>
   </section>
@@ -942,11 +1074,16 @@
       <h2 class="reveal">Book your free workflow audit</h2>
       <p class="reveal d1">Show me where your team loses time, and I'll show you exactly what custom software could take off their plate. Free, no obligation, and worth the half hour even if we never work together.</p>
       <div class="hero-cta reveal d2">
-        <a href="https://cal.eu/layerform/discovery-call" class="btn btn-primary">
-          Book your free workflow audit
-          <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
-        </a>
-        <p class="hero-note">Or email me, <a href="mailto:rashid@layerformsystem.co.uk">rashid@layerformsystem.co.uk</a></p>
+        <div class="cta-pair">
+          <a href="https://cal.eu/layerform/discovery-call" class="btn btn-primary">
+            Book a free workflow audit
+            <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+          </a>
+          <a href="mailto:rashid@layerformsystem.co.uk?subject=My%20process%2C%20what%20would%20you%20automate%20first%3F" class="btn btn-ghost">
+            Email me your process instead
+          </a>
+        </div>
+        <p class="hero-note">Rather not book a call? Email me how your team works, at <a href="mailto:rashid@layerformsystem.co.uk">rashid@layerformsystem.co.uk</a>, and I'll reply with what I'd automate first.</p>
       </div>
     </div>
   </section>
@@ -955,17 +1092,26 @@
 
 <!-- Footer -->
 <footer class="site-footer">
-  <div class="container footer-inner">
-    <div class="footer-brand">
-      <svg class="logo-svg" role="img" aria-label="Layerform"><use href="#lf-logo"/></svg>
-      <span>&copy; 2026 Layerform System Ltd</span>
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <svg class="logo-svg" role="img" aria-label="Layerform"><use href="#lf-logo"/></svg>
+        <span>&copy; 2026 Layerform System Ltd</span>
+      </div>
+      <div class="footer-links">
+        <a href="mailto:rashid@layerformsystem.co.uk">rashid@layerformsystem.co.uk</a>
+        <a href="https://www.linkedin.com/in/rash-q-1521a4269/" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="/marketing-dashboards">Marketing dashboards</a>
+        <a href="/guides">Guides</a>
+        <a href="/privacy">Privacy policy</a>
+      </div>
     </div>
-    <div class="footer-links">
-      <a href="mailto:rashid@layerformsystem.co.uk">rashid@layerformsystem.co.uk</a>
-      <a href="https://www.linkedin.com/in/rash-q-1521a4269/" target="_blank" rel="noopener">LinkedIn</a>
-      <a href="/guides">Guides</a>
-      <a href="/privacy">Privacy policy</a>
-    </div>
+    <p class="footer-legal">
+      Layerform System Ltd is registered in England and Wales, company number
+      <a href="https://find-and-update.company-information.service.gov.uk/company/16171454" target="_blank" rel="noopener">16171454</a>,
+      and registered with the Information Commissioner's Office as a data controller, reference
+      <a href="https://ico.org.uk/ESDWebPages/Entry/ZC124917" target="_blank" rel="noopener">ZC124917</a>.
+    </p>
   </div>
 </footer>
 
@@ -1002,7 +1148,7 @@
           observer.unobserve(entry.target);
         }
       });
-    }, { rootMargin: '0px 0px -10% 0px', threshold: 0.1 });
+    }, { rootMargin: '0px 0px 15% 0px', threshold: 0 });
     items.forEach(function (el) { io.observe(el); });
   })();
 </script>
