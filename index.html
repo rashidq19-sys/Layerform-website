@@ -85,7 +85,8 @@
       "@id": "https://www.layerformsystem.co.uk/#faq",
       "mainEntity": [
         { "@type": "Question", "name": "What is AI automation?", "acceptedAnswer": { "@type": "Answer", "text": "AI automation means using AI and software to do the repetitive, manual work your team does by hand, like sorting information, moving data between tools, drafting routine messages, and chasing updates. The result is less busywork, fewer mistakes, and more time for the work that needs a person." } },
-        { "@type": "Question", "name": "What does it cost?", "acceptedAnswer": { "@type": "Answer", "text": "Because everything I build is bespoke, I quote a fixed price per project after the free workflow audit, once I've seen the work involved. You know the full price before we start. No hidden retainers, no surprises." } },
+        { "@type": "Question", "name": "What does it cost?", "acceptedAnswer": { "@type": "Answer", "text": "Every project has different requirements, so there is no standard price. The first call is free. After that there is a consultation fee, agreed before we book it, for the session where we go through your processes properly. You come out of that with a written plan and one fixed price for building it, yours to keep either way. If you go ahead, a small deposit starts the work and the rest is paid on milestones. No hourly billing, no open-ended retainers." } },
+        { "@type": "Question", "name": "You're one person. What happens if it stalls halfway?", "acceptedAnswer": { "@type": "Answer", "text": "The right question to ask, and the payment structure is the answer. You are never paying a long way ahead of the work: a small deposit starts the project, then the rest is paid on milestones as working pieces land and you can see them running. You are not waiting months for one big reveal at the end, and a support period after launch is included in the price rather than sold back to you afterwards." } },
         { "@type": "Question", "name": "Who is this for?", "acceptedAnswer": { "@type": "Answer", "text": "Any growing business or professional firm with repetitive manual admin: legal, accountancy, property, logistics, and other service businesses. If your team spends hours on admin that feels like it should be automated, it probably can be." } },
         { "@type": "Question", "name": "Do we have to replace the tools we already use?", "acceptedAnswer": { "@type": "Answer", "text": "No. I build around what you have: your spreadsheets, email, calendars and the software you already pay for. The new system connects them and fills the gaps, so your team isn't forced to start from scratch." } },
         { "@type": "Question", "name": "Do you only work with London businesses?", "acceptedAnswer": { "@type": "Answer", "text": "I'm based in London and work closely with London firms, but most of the work is done remotely, so I help businesses across the UK too." } },
@@ -148,7 +149,9 @@
 
   *, *::before, *::after { box-sizing: border-box; }
 
-  html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+  /* No scroll-behavior: smooth. Anchor jumps from the nav felt sluggish on a
+     page this tall, and an instant jump reads as faster. */
+  html { -webkit-text-size-adjust: 100%; }
 
   body {
     margin: 0;
@@ -243,10 +246,11 @@
 
   .header-cta { display: flex; align-items: center; gap: 1.25rem; }
 
-  /* Nav needs logo (174) + links (495) + button (248) + container padding
-     and comfortable gaps. Measured at 1028, so 1040 is the first width the
-     six items fit on one line. Was 1120 when a seventh item was in here. */
-  @media (min-width: 1040px) {
+  /* Nav needs logo (173) + links (351) + button (247) + container padding (48)
+     and comfortable gaps. Measured at 819 for the four items, so 900 leaves
+     ~80px of breathing room. Was 1040 when Guides and FAQ were also up here,
+     and 1120 before that. Re-measure this if a nav item is added or renamed. */
+  @media (min-width: 900px) {
     .nav-links { display: flex; }
   }
 
@@ -487,7 +491,7 @@
   @keyframes rise { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: none; } }
 
   @media (prefers-reduced-motion: reduce) {
-    * { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
+    * { animation: none !important; transition: none !important; }
     .reveal { opacity: 1; transform: none; }
     .hero-stack .layer { animation: none; }
   }
@@ -544,6 +548,18 @@
   }
   .price-note .price-head { font-size: 1.15rem; font-weight: 700; color: var(--ink); }
   .price-note p { margin-top: .6rem; color: var(--slate-600); }
+  /* The three money stages read as a left-aligned list. Deliberately not
+     numbered: the five-step flow directly above is numbered already, and a
+     second set of numerals right under it competes with it. */
+  .price-steps { list-style: none; margin: 1.15rem 0 0; padding: 0; text-align: left; }
+  .price-steps li { position: relative; padding-left: 1.5rem; color: var(--slate-600); }
+  .price-steps li + li { margin-top: .85rem; }
+  .price-steps li::before {
+    content: ""; position: absolute; left: 0; top: .55rem;
+    width: .45rem; height: .45rem; border-radius: 999px; background: var(--accent);
+  }
+  .price-steps strong { color: var(--ink); }
+  .price-note .price-foot { font-size: .95rem; }
 
   /* ---------- Testimonials ---------- */
   .testimonials {
@@ -650,8 +666,6 @@
       <a href="#examples">Examples</a>
       <a href="#how">How I help</a>
       <a href="#proof">Proof</a>
-      <a href="/guides">Guides</a>
-      <a href="#faq">FAQ</a>
     </nav>
     <div class="header-cta">
       <a href="https://cal.eu/layerform/discovery-call" class="btn btn-primary small">
@@ -756,8 +770,11 @@
         I work with <strong>growing businesses and professional firms: legal, accountancy, property, logistics, and other service businesses.</strong>
       </p>
 
-      <p class="reveal d2" style="text-align:center;margin-top:1.25rem;">
-        <a href="/marketing-dashboards" style="font-weight:600;color:var(--accent);">Marketing dashboards</a>
+      <!-- This link must stay one click from the homepage for the Google Ads API
+           reviewer (see STATUS.md, 2026-07-30). It used to sit here bare, on its
+           own line, reading as a stray SEO link. Same link, now with a reason. -->
+      <p class="reveal d2" style="text-align:center;margin-top:1.25rem;color:var(--slate-600);">
+        Running paid ads? I also build <a href="/marketing-dashboards" style="font-weight:600;color:var(--accent);">marketing reporting dashboards</a> that pull your ad spend and results into one place, so you can see which ads actually made money.
       </p>
     </div>
   </section>
@@ -940,7 +957,7 @@
         <li class="step reveal d1">
           <div class="num">2</div>
           <h3>Map the process</h3>
-          <p>We map how the work actually flows, so the system fits reality, not a flowchart.</p>
+          <p>In the consultation we go through how the work actually flows, so the system fits reality, not a flowchart. You come out of it with a written plan and a fixed price.</p>
         </li>
         <li class="step reveal d2">
           <div class="num">3</div>
@@ -960,8 +977,13 @@
       </ol>
 
       <div class="price-note reveal d1">
-        <p class="price-head">Fixed price per project, agreed before anything starts</p>
-        <p>Everything I build is bespoke, so I quote one fixed price after the free audit, once I have seen the work involved. No hourly billing, no hidden retainers, no surprise invoices. If the number doesn't work for you, the audit was still free and yours to keep.</p>
+        <p class="price-head">How the money works, from first call to finished system</p>
+        <ul class="price-steps">
+          <li><strong>The first call is free.</strong> You walk me through your week and I tell you what I would automate first, whether we end up working together or not.</li>
+          <li><strong>Then there is a consultation fee, agreed before we book it.</strong> This is the proper sit down where we go through your processes in detail. You come away with a written plan of what to build and one fixed price for building it, and that plan is yours to keep whatever you decide to do next.</li>
+          <li><strong>If you go ahead, a small deposit starts the work,</strong> and the rest is paid on milestones as working pieces land and you can see them. No hourly billing, no open-ended retainers, and a support period after launch is included in the price.</li>
+        </ul>
+        <p class="price-foot">Every project has different requirements, so there is no standard price list. The figure comes from your actual work, not from a number on a web page.</p>
       </div>
     </div>
   </section>
@@ -978,7 +1000,7 @@
           <div class="body">
             <p class="reveal d1">I'm Rashid, founder of Layerform System Ltd. I've spent over 15 years turning messy manual processes into working systems.</p>
             <p class="reveal d1">I built and sold a travel business in Dubai that ran on an automated booking system, ran a logistics company for six years, and built an automated performance dashboard at the NHS.</p>
-            <p class="reveal d2">Based in London, I now build bespoke AI systems and custom internal tools for businesses drowning in manual admin. I don't sell templates or theory. I look at how your business actually works and build something that saves real time.</p>
+            <p class="reveal d2">Based in London, I now build bespoke AI systems and custom internal tools for businesses drowning in manual admin. I'm not interested in selling you theory. I look at how your business actually works and build something that saves real time.</p>
           </div>
         </div>
         <figure class="about-photo reveal d1">
@@ -1004,7 +1026,11 @@
         </details>
         <details class="qa reveal">
           <summary>What does it cost? <span class="icon" aria-hidden="true"></span></summary>
-          <p class="answer">Because everything I build is bespoke, I quote a fixed price per project after the free workflow audit, once I've seen the work involved. You know the full price before we start. No hidden retainers, no surprises.</p>
+          <p class="answer">Every project has different requirements, so there is no standard price. The first call is free. After that there is a consultation fee, agreed before we book it, for the session where we go through your processes properly. You come out of that with a written plan and one fixed price for building it, yours to keep either way. If you go ahead, a small deposit starts the work and the rest is paid on milestones. No hourly billing, no open-ended retainers.</p>
+        </details>
+        <details class="qa reveal">
+          <summary>You're one person. What happens if it stalls halfway? <span class="icon" aria-hidden="true"></span></summary>
+          <p class="answer">The right question to ask, and the payment structure is the answer. You are never paying a long way ahead of the work: a small deposit starts the project, then the rest is paid on milestones as working pieces land and you can see them running. You are not waiting months for one big reveal at the end, and a support period after launch is included in the price rather than sold back to you afterwards.</p>
         </details>
         <details class="qa reveal">
           <summary>Who is this for? <span class="icon" aria-hidden="true"></span></summary>
@@ -1103,6 +1129,7 @@
         <a href="https://www.linkedin.com/in/rash-q-1521a4269/" target="_blank" rel="noopener">LinkedIn</a>
         <a href="/marketing-dashboards">Marketing dashboards</a>
         <a href="/guides">Guides</a>
+        <a href="/#faq">FAQ</a>
         <a href="/privacy">Privacy policy</a>
       </div>
     </div>
