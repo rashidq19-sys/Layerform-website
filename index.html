@@ -1156,9 +1156,12 @@
     // its first batch swallowed. Without this, that content would stay at
     // opacity 0 with nothing left to trigger it. Reveal anything already
     // on screen on load, and again whenever the tab becomes visible.
+    // Deliberately does not skip elements that already carry `in`. A hidden
+    // document can add the class but never advance the transition, leaving
+    // opacity at 0, and those are precisely the ones needing a re-assert.
+    // Adding the class again is a no-op where it already took effect.
     function revealOnScreen() {
       items.forEach(function (el) {
-        if (el.classList.contains('in')) return;
         var r = el.getBoundingClientRect();
         if (r.top < window.innerHeight && r.bottom > 0) el.classList.add('in');
       });
