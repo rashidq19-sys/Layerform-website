@@ -245,7 +245,11 @@
   .section-head h2 { font-size: clamp(1.65rem, 1rem + 1.9vw, 2.35rem); font-weight: 700; }
   .section-head p { margin-top: 1rem; font-size: 1.1rem; color: var(--slate-600); }
 
-  .band-light { background: var(--slate-50); border-block: 1px solid var(--slate-200); }
+  /* Alternating section tints so each block reads as its own. Two tints,
+     not one: the work section takes a cool grey, About a soft blue, and the
+     white sections sit between them. */
+  .band-light { background: var(--slate-100); border-block: 1px solid var(--slate-200); }
+  .band-blue { background: #EDF4FF; border-block: 1px solid #D6E4FA; }
 
   /* ---------- Hero ---------- */
   .hero {
@@ -317,7 +321,7 @@
   /* Work still in progress, kept smaller than the finished systems. */
   .in-progress {
     margin-top: 1.5rem; padding: 1.25rem 1.5rem;
-    border: 1px dashed var(--slate-300); border-radius: var(--radius);
+    border: 1px dashed var(--slate-300); border-radius: var(--radius); background: var(--white);
     display: flex; flex-direction: column; gap: .5rem; color: var(--slate-600);
   }
   .in-progress .project-meta { margin-bottom: 0; }
@@ -580,7 +584,7 @@
   </section>
 
   <!-- About -->
-  <section class="band-light">
+  <section class="band-blue">
     <div class="container">
       <div class="about">
         <div class="about-text">
