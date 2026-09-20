@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="theme-color" content="#0B1220">
+<meta name="theme-color" content="#FFFFFF">
 <meta name="color-scheme" content="light">
 
 <meta name="google-site-verification" content="EmeYU1xL3WJRzg9-zGzw6kV_X_RGNS9sZ09WbJyVLaY">
@@ -194,30 +194,27 @@
   .text-link:hover { text-decoration-thickness: 2px; }
 
   /* ---------- Header ----------
-     Fixed, always with a solid readable background. Navy over the hero,
-     white with a border once the hero has scrolled past. */
+     Fixed, always with a solid readable white background. The border and shadow
+     appear once the hero has scrolled past. */
   .site-header {
     position: fixed; inset: 0 0 auto 0; z-index: 50;
-    background: var(--brand-dark);
-    border-bottom: 1px solid rgba(255,255,255,.08);
-    transition: background .25s var(--ease), border-color .25s var(--ease);
+    background: var(--white);
+    border-bottom: 1px solid transparent;
+    transition: border-color .25s var(--ease);
   }
   .site-header .bar {
     display: flex; align-items: center; justify-content: space-between; gap: 1rem;
     height: var(--header-h);
   }
   .site-header.scrolled {
-    background: var(--white);
     border-bottom-color: var(--slate-200);
     box-shadow: 0 2px 12px rgba(15,23,42,.06);
   }
 
   .logo-set { position: relative; display: block; height: 3rem; flex: none; }
   .logo-set .logo-svg { height: 3rem; width: auto; aspect-ratio: 10 / 3; display: block; transition: opacity .25s var(--ease); }
-  .logo-set .logo-dark { position: absolute; inset: 0; color: #fff; opacity: 1; }
-  .logo-set .logo-light { color: var(--ink); opacity: 0; }
-  .site-header.scrolled .logo-light { opacity: 1; }
-  .site-header.scrolled .logo-dark  { opacity: 0; }
+  .logo-set .logo-dark { position: absolute; inset: 0; color: #fff; opacity: 0; }
+  .logo-set .logo-light { color: var(--ink); opacity: 1; }
   @media (max-width: 480px) {
     .logo-set, .logo-set .logo-svg { height: 2.25rem; }
     .btn-primary.small { padding: .7rem .85rem; font-size: .82rem; min-height: 2.75rem; }
@@ -225,12 +222,10 @@
 
   .nav-links { display: none; gap: 1.75rem; align-items: center; }
   .nav-links a {
-    font-size: .95rem; font-weight: 500; color: rgba(255,255,255,.85);
+    font-size: .95rem; font-weight: 500; color: var(--slate-600);
     transition: color .2s var(--ease);
   }
-  .nav-links a:hover { color: #fff; text-decoration: underline; text-underline-offset: 5px; }
-  .site-header.scrolled .nav-links a { color: var(--slate-600); }
-  .site-header.scrolled .nav-links a:hover { color: var(--ink); }
+  .nav-links a:hover { color: var(--ink); text-decoration: underline; text-underline-offset: 5px; }
 
   /* Nav needs logo (160) + links (282) + button (216) + container padding (48)
      and two 16px gaps. Measured at 738 in-browser on 2026-09-19, so 800 leaves
@@ -247,32 +242,40 @@
   .section-head p { margin-top: 1.15rem; font-size: 1.15rem; line-height: 1.68; color: var(--slate-600); }
 
   /* Alternating section tints so each block reads as its own. Two tints,
-     not one: the work section takes a cool grey, About a soft blue, and the
+     not one: the work section takes the navy, About a soft blue, and the
      white sections sit between them. */
   .band-light { background: var(--slate-100); border-block: 1px solid var(--slate-200); }
   .band-blue { background: #EDF4FF; border-block: 1px solid #D6E4FA; }
+  .band-dark { background: var(--brand-dark); color: rgba(226,232,240,.9); border-block: 1px solid rgba(255,255,255,.08); }
+  .band-dark .section-head h2 { color: #fff; }
+  .band-dark .section-head p { color: rgba(203,213,225,.92); }
 
   /* ---------- Hero ---------- */
   .hero {
-    background: var(--brand-dark);
-    color: #fff;
+    background: var(--white);
     padding-top: calc(var(--header-h) + clamp(2.5rem, 6vw, 5rem));
     padding-bottom: clamp(2.75rem, 6vw, 5rem);
   }
-  .hero-inner { max-width: 46rem; margin-inline: auto; text-align: center; }
+  .hero-inner { display: grid; gap: 3rem; align-items: center; }
+  .hero-copy { text-align: left; }
   .hero h1 {
-    color: #fff; font-family: var(--font-display); font-weight: 400;
+    color: var(--ink); font-family: var(--font-display); font-weight: 400;
     font-size: clamp(2.4rem, 1.4rem + 3.4vw, 4rem);
     letter-spacing: -0.022em; line-height: 1.06;
   }
   .hero-sub {
-    margin: 1.25rem auto 0; max-width: 38rem;
+    margin: 1.25rem 0 0; max-width: 38rem;
     font-size: clamp(1.05rem, .95rem + .4vw, 1.2rem);
-    color: rgba(226,232,240,.9); line-height: 1.65;
+    color: var(--slate-600); line-height: 1.65;
   }
-  .hero-cta { margin-top: 1.75rem; display: flex; flex-direction: column; align-items: center; gap: .9rem; }
-  .hero-note { font-size: .95rem; color: rgba(203,213,225,.9); max-width: 32rem; }
-  .hero .text-link { color: #fff; font-size: .95rem; }
+  .hero-cta { margin-top: 1.75rem; display: flex; flex-direction: column; align-items: flex-start; gap: .9rem; }
+  .hero-note { font-size: .95rem; color: var(--slate-600); max-width: 32rem; }
+  .hero .text-link { color: var(--ink); font-size: .95rem; }
+  .hero-shot { margin: 0; border: 1px solid var(--slate-200); border-radius: var(--radius); box-shadow: var(--shadow-md); overflow: hidden; background: var(--slate-100); }
+  .hero-shot img { width: 100%; height: auto; }
+  @media (min-width: 900px) {
+    .hero-inner { grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr); gap: 4rem; }
+  }
   @media (max-width: 480px) {
     .hero-cta .btn { width: 100%; }
   }
@@ -312,6 +315,15 @@
   .project-link svg { width: 1rem; height: 1rem; }
   /* slate-400 on white was 2.6:1, under AA. slate-500 clears 4.5:1. */
   .project-note { margin-top: 1rem; font-size: .88rem; color: var(--slate-500); }
+  .band-dark .project { background: #101827; border-color: rgba(255,255,255,.10); box-shadow: none; }
+  .band-dark .project-shot { background: #0B1220; border-bottom-color: rgba(255,255,255,.08); }
+  .band-dark .project h3 { color: #fff; }
+  .band-dark .project .desc { color: rgba(226,232,240,.88); }
+  .band-dark .tag { color: var(--slate-400); }
+  .band-dark .project-link { color: var(--accent-light); }
+  .band-dark .project-link:hover { color: #fff; }
+  /* slate-400 gives dark-card supporting text more breathing room. */
+  .band-dark .project-note { color: var(--slate-400); }
 
   /* Testimonial beneath the project it refers to. */
   .quote { margin: 1.25rem 0 0; padding: 1rem 1.1rem; border-left: 3px solid var(--accent-light); background: var(--slate-50); border-radius: 0 var(--radius-sm) var(--radius-sm) 0; }
@@ -327,6 +339,8 @@
   }
   .in-progress .project-meta { margin-bottom: 0; }
   .in-progress h3 { font-size: 1.05rem; font-weight: 600; }
+  .band-dark .in-progress { background: transparent; border-color: rgba(255,255,255,.22); color: rgba(226,232,240,.85); }
+  .band-dark .in-progress h3 { color: #fff; }
 
   /* ---------- How it works ---------- */
   .steps { margin-top: 3rem; display: grid; gap: 1.75rem; list-style: none; margin-block-end: 0; padding: 0; }
@@ -370,7 +384,7 @@
   .cta-final { background: var(--brand-dark); color: #fff; text-align: center; }
   .cta-final h2 { color: #fff; }
   .cta-final p { margin: 1rem auto 0; max-width: 36rem; font-size: 1.1rem; color: rgba(226,232,240,.9); }
-  .cta-final .hero-cta { margin-top: 1.75rem; }
+  .cta-final .hero-cta { margin-top: 1.75rem; align-items: center; }
   .cta-final .text-link { color: #fff; font-size: .95rem; }
 
   /* ---------- Footer ---------- */
@@ -399,7 +413,7 @@
   @media print {
     * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
     .site-header { position: static; }
-    .hero, .cta-final, .site-footer { background: var(--brand-dark) !important; }
+    .band-dark, .cta-final, .site-footer { background: var(--brand-dark) !important; }
   }
 </style>
 </head>
@@ -425,8 +439,8 @@
 <header class="site-header" id="site-header">
   <div class="container bar">
     <a href="/" class="logo-set" aria-label="Layerform System Ltd, home">
-      <svg class="logo-svg logo-dark" role="img" aria-label="Layerform"><use href="#lf-logo"/></svg>
-      <svg class="logo-svg logo-light" aria-hidden="true"><use href="#lf-logo"/></svg>
+      <svg class="logo-svg logo-dark" aria-hidden="true"><use href="#lf-logo"/></svg>
+      <svg class="logo-svg logo-light" role="img" aria-label="Layerform"><use href="#lf-logo"/></svg>
     </a>
     <nav class="nav-links" aria-label="Primary">
       <a href="#what-i-do">What I do</a>
@@ -443,13 +457,19 @@
   <section class="hero">
     <div class="container">
       <div class="hero-inner">
-        <h1>Custom systems that make your business easier to run.</h1>
-        <p class="hero-sub">I build software around the way your business works, helping you reduce repetitive admin, keep information organised and give your team more time for customers.</p>
-        <div class="hero-cta">
-          <a href="https://cal.eu/layerform/discovery-call" class="btn btn-primary">Book a free 30-minute call</a>
-          <p class="hero-note">Tell me what takes too much time. I'll help you work out what could be simpler.</p>
-          <a href="mailto:rashid@layerformsystem.co.uk?subject=What%20I%20need%20help%20with" class="text-link">Prefer email? Tell me what you need help with.</a>
+        <div class="hero-copy">
+          <h1>Custom systems that make your business easier to run.</h1>
+          <p class="hero-sub">I build software around the way your business works, helping you reduce repetitive admin, keep information organised and give your team more time for customers.</p>
+          <div class="hero-cta">
+            <a href="https://cal.eu/layerform/discovery-call" class="btn btn-primary">Book a free 30-minute call</a>
+            <p class="hero-note">Tell me what takes too much time. I'll help you work out what could be simpler.</p>
+            <a href="mailto:rashid@layerformsystem.co.uk?subject=What%20I%20need%20help%20with" class="text-link">Prefer email? Tell me what you need help with.</a>
+          </div>
         </div>
+        <figure class="hero-shot">
+          <img src="/images/dspops-dashboard.webp" width="1400" height="677" decoding="async" fetchpriority="high"
+               alt="The DSPOps operations dashboard: driver and van status, deployment plan, capacity planning, compliance and van damage reporting.">
+        </figure>
       </div>
     </div>
   </section>
@@ -480,7 +500,7 @@
   </section>
 
   <!-- My work -->
-  <section id="work" class="band-light">
+  <section id="work" class="band-dark">
     <div class="container">
       <div class="section-head">
         <h2>See what this looks like in practice.</h2>
@@ -697,7 +717,7 @@
 </footer>
 
 <script>
-  // Header: navy over the dark hero, white once past it.
+  // Header: white from load, with a border and shadow once past the hero.
   (function () {
     var header = document.getElementById('site-header');
     var hero = document.querySelector('.hero');
