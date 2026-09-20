@@ -231,10 +231,11 @@
   }
   .nav-links a:hover { color: var(--ink); text-decoration: underline; text-underline-offset: 5px; }
 
-  /* Nav needs logo (160) + links (282) + button (216) + container padding (48)
-     and two 16px gaps. Measured at 738 in-browser on 2026-09-19, so 800 leaves
-     ~60px of breathing room. Was 900 with four links and the longer button.
-     Re-measure this if a nav item is added or renamed. */
+  /* Nav needs logo (160) + links (263) + button (203) + container padding (48)
+     and two 16px gaps. Measured at 706 in-browser on 2026-09-20 with Instrument
+     Sans (was 738 with Inter), so 800 leaves ~94px of breathing room. Was 900
+     with four links and the longer button. Re-measure this if a nav item is
+     added or renamed, or the font changes. */
   @media (min-width: 800px) {
     .nav-links { display: flex; }
   }
@@ -297,7 +298,7 @@
   .benefit:first-child { border-top-color: var(--accent); }
   .benefit h3 { font-size: 1.15rem; font-weight: 600; }
   .benefit p { margin-top: .5rem; color: var(--slate-600); }
-  .benefits-foot { margin-top: 2.25rem; font-family: var(--font-display); font-size: 1.1rem; font-weight: 400; color: var(--ink); max-width: var(--maxw-text); }
+  .benefits-foot { margin-top: 2.25rem; font-family: var(--font-display); font-size: 1.25rem; font-weight: 400; color: var(--ink); max-width: var(--maxw-text); }
 
   /* ---------- My work ---------- */
   .projects { margin-top: 3rem; display: grid; gap: 1.5rem; }
@@ -385,7 +386,7 @@
   details.qa { border-bottom: 1px solid var(--slate-200); }
   details.qa summary {
     list-style: none; cursor: pointer; display: flex; justify-content: space-between; align-items: center; gap: 1.5rem;
-    padding: 1.1rem 0; font-family: var(--font-display); font-size: 1.05rem; font-weight: 400; color: var(--ink);
+    padding: 1.1rem 0; font-family: var(--font-display); font-size: 1.15rem; font-weight: 400; color: var(--ink);
   }
   details.qa summary::-webkit-details-marker { display: none; }
   .qa .icon { flex: none; width: 1.5rem; height: 1.5rem; position: relative; }
